@@ -175,8 +175,10 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 		 */
 		function add_style_to_compiler( $handles ) {
 			$handles = array_merge(
-				array( 'slider-pro-style'    => plugins_url( 'public/assets/css/slider-pro.css', __FILE__ ) ),
-				array( 'cherry-slider-style' => plugins_url( 'public/assets/css/style.css', __FILE__ ) ),
+				array(
+					'slider-pro-style'    => plugins_url( 'public/assets/css/slider-pro.css', __FILE__ ),
+					'cherry-slider-style' => plugins_url( 'public/assets/css/style.css', __FILE__ ),
+				),
 				$handles
 			);
 
