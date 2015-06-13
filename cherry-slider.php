@@ -3,7 +3,7 @@
  * Plugin Name: Cherry Slider
  * Plugin URI:  http://www.cherryframework.com/
  * Description: A Slider plugin for WordPress.
- * Version:     1.0.0 beta1
+ * Version:     1.0.0 beta
  * Author:      Cherry Team
  * Author URI:  http://www.cherryframework.com/
  * Text Domain: cherry-slider
@@ -55,7 +55,8 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 			add_action( 'plugins_loaded', array( $this, 'admin' ),     4 );
 
 			// Load public-facing style sheet.
-			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+			add_action( 'wp_enqueue_scripts',         array( $this, 'enqueue_styles' ) );
+			add_filter( 'cherry_compiler_static_css', array( $this, 'add_style_to_compiler' ) );
 			// Load public-facing JavaScript.
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
@@ -163,6 +164,23 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 		public function enqueue_styles() {
 			wp_enqueue_style( 'slider-pro-style', plugins_url( 'public/assets/css/slider-pro.css', __FILE__ ), array(), CHERRY_SLIDER_VERSION );
 			wp_enqueue_style( 'cherry-slider-style', plugins_url( 'public/assets/css/style.css', __FILE__ ), array(), CHERRY_SLIDER_VERSION );
+		}
+
+		/**
+		 * Pass style handle to CSS compiler.
+		 *
+		 * @since 1.0.0
+		 *
+		 * @param array $handles CSS handles to compile.
+		 */
+		function add_style_to_compiler( $handles ) {
+			$handles = array_merge(
+				array( 'slider-pro-style'    => plugins_url( 'public/assets/css/slider-pro.css', __FILE__ ) ),
+				array( 'cherry-slider-style' => plugins_url( 'public/assets/css/style.css', __FILE__ ) ),
+				$handles
+			);
+
+			return $handles;
 		}
 
 		/**

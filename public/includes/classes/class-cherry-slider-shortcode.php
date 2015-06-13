@@ -22,7 +22,7 @@ class Cherry_Slider_Shortcode extends Cherry_Slider_Data {
 	 * @since 1.0.0
 	 * @var   string
 	 */
-	public static $name = 'cherry_slider';
+	public static $name = 'slider';
 
 	/**
 	 * A reference to an instance of this class.
@@ -63,7 +63,7 @@ class Cherry_Slider_Shortcode extends Cherry_Slider_Data {
 		 */
 		$tag = apply_filters( self::$name . '_shortcode_name', self::$name );
 
-		add_shortcode( $tag, array( $this, 'do_shortcode' ) );
+		add_shortcode( 'cherry_' . $tag, array( $this, 'do_shortcode' ) );
 	}
 
 	/**
