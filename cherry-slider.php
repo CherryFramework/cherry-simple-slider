@@ -54,6 +54,8 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 			// Load the admin files.
 			add_action( 'plugins_loaded', array( $this, 'admin' ),     4 );
 
+			add_action( 'init', array( $this, 'register_static' ), 11 );
+
 			// Load public-facing style sheet.
 			add_action( 'wp_enqueue_scripts',         array( $this, 'enqueue_styles' ) );
 			add_filter( 'cherry_compiler_static_css', array( $this, 'add_style_to_compiler' ) );
@@ -126,6 +128,46 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 			require_once( trailingslashit( CHERRY_SLIDER_DIR ) . 'public/includes/classes/class-cherry-slider-options.php' );
 			require_once( trailingslashit( CHERRY_SLIDER_DIR ) . 'public/includes/classes/class-cherry-slider-data.php' );
 			require_once( trailingslashit( CHERRY_SLIDER_DIR ) . 'public/includes/classes/class-cherry-slider-shortcode.php' );
+		}
+
+		/**
+		 * Register static.
+		 *
+		 * @since 1.0.0
+		 */
+		public function register_static() {
+
+			$static_file = apply_filters( 'cherry_slider_static_file', 'cherry-slider-static.php' );
+
+			if ( defined( 'CHILD_DIR' ) ) {
+				$child_dir = CHILD_DIR;
+			} else {
+				$child_dir = get_stylesheet_directory();
+			}
+
+			$abspath = preg_replace( '#/+#', '/', trailingslashit( $child_dir ) . $static_file );
+
+			// If file found in child theme - include it and break function.
+			if ( file_exists( $abspath ) ) {
+				require_once $abspath;
+				return;
+			}
+
+			// If file was not found in child theme - search it in parent.
+			if ( defined( 'PARENT_DIR' ) ) {
+				$parent_dir = PARENT_DIR;
+			} else {
+				$parent_dir = get_template_directory();
+			}
+
+			$abspath = preg_replace( '#/+#', '/', trailingslashit( $parent_dir ) . $static_file );
+
+			if ( file_exists( $abspath ) ) {
+				require_once $abspath;
+				return;
+			}
+
+			require_once CHERRY_SLIDER_DIR . 'init/statics/' . $static_file;
 		}
 
 		/**
