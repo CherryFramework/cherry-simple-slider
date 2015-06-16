@@ -49,7 +49,7 @@ new cherry_slider_static(
 			'col-xs'   => 'none',
 			'class'    => '',
 			'position' => 3,
-			'area'     => 'showcase-area',
+			'area'     => 'available-statics',
 		)
 	)
 );
