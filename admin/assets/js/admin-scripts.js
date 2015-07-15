@@ -49,7 +49,8 @@ jQuery(document).ready(function() {
 					jQuery('.ajax-loader', settingsContainer).hide();
 					jQuery('.inside .settings-item', settingsContainer).hide();
 					jQuery('.inside', settingsContainer).prepend( response );
-					jQuery.cherryInterfaceBuilder.CallInterfaceBuilder( jQuery('.inside .settings-item', settingsContainer).eq(0) );
+
+					CHERRY_API.interface_builder.init( jQuery('.inside .settings-item', settingsContainer).eq(0) );
 				},
 				dataType: 'html'
 			});
