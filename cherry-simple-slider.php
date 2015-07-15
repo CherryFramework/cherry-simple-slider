@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: Cherry Slider
+ * Plugin Name: Cherry Simple Slider
  * Plugin URI:  http://www.cherryframework.com/
  * Description: A Slider plugin for WordPress.
  * Version:     1.0.0 beta
  * Author:      Cherry Team
  * Author URI:  http://www.cherryframework.com/
- * Text Domain: cherry-slider
+ * Text Domain: cherry-simple-slider
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Domain Path: /languages
