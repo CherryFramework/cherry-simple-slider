@@ -67,7 +67,7 @@ if ( !class_exists( 'Slider_Options' ) ) {
 			self::set_option_value( 'image_class', '' );
 			//defaults query_args
 			self::set_option_value( 'post_type', CHERRY_SLIDER_NAME );
-			self::set_option_value( CHERRY_SLIDER_NAME.'_sliders', '' );
+			self::set_option_value( CHERRY_SLIDER_NAME.'_sliders', self::cherry_slider_get_option('cherry-slider-name', '') );
 			self::set_option_value( 'orderby', 'date' );
 			self::set_option_value( 'order', self::cherry_slider_get_option('cherry-slider-order', 'DESC') );
 			self::set_option_value( 'posts_per_page', self::cherry_slider_get_option('cherry-slider-number-slides', 5 ) );
