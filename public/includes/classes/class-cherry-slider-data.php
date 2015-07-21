@@ -37,7 +37,7 @@ class Cherry_Slider_Data {
 	 */
 	public function __construct() {
 		/**
-		 * Fires when you need to display portfolio.
+		 * Fires when you need to display slider.
 		 *
 		 * @since 1.0.0
 		 */
@@ -57,9 +57,9 @@ class Cherry_Slider_Data {
 		 *
 		 * @since 1.0.0
 		 * @param array options.
-		 * @param array The 'the_portfolio_items' function argument.
+		 * @param array The 'the_slider_items' function argument.
 		 */
-		$default_options = apply_filters( 'cherry_the_portfolio_default_options', Slider_Options::$options );
+		$default_options = apply_filters( 'cherry_the_slider_default_options', Slider_Options::$options );
 		// default options marge
 		$options = wp_parse_args( $options, $default_options );
 
@@ -189,7 +189,7 @@ class Cherry_Slider_Data {
 		return $html;
 	}
 	/**
-	 * Get portfolio items.
+	 * Get slider items.
 	 *
 	 * @since  1.0.0
 	 * @param  array         $posts_query      List of WP_Post objects.

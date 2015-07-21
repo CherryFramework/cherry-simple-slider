@@ -178,15 +178,15 @@ class Cherry_Simple_Slider_Meta_Boxes {
 						'class'			=> 'width-full',
 						'value'			=> 'topCenter',
 						'options'		=> array(
-							'topLeft'		=> __('topLeft position', 'cherry-portfolio'),
-							'topCenter'		=> __('topCenter position', 'cherry-portfolio'),
-							'topRight'		=> __('topRight position', 'cherry-portfolio'),
-							'bottomLeft'	=> __('bottomLeft position', 'cherry-portfolio'),
-							'bottomCenter'	=> __('bottomCenter position', 'cherry-portfolio'),
-							'bottomRight'	=> __('bottomRight position', 'cherry-portfolio'),
-							'centerLeft'	=> __('centerLeft position', 'cherry-portfolio'),
-							'centerRight'	=> __('centerRight position', 'cherry-portfolio'),
-							'centerCenter'	=> __('centerCenter position', 'cherry-portfolio'),
+							'topLeft'		=> __('topLeft position', 'cherry-slider'),
+							'topCenter'		=> __('topCenter position', 'cherry-slider'),
+							'topRight'		=> __('topRight position', 'cherry-slider'),
+							'bottomLeft'	=> __('bottomLeft position', 'cherry-slider'),
+							'bottomCenter'	=> __('bottomCenter position', 'cherry-slider'),
+							'bottomRight'	=> __('bottomRight position', 'cherry-slider'),
+							'centerLeft'	=> __('centerLeft position', 'cherry-slider'),
+							'centerRight'	=> __('centerRight position', 'cherry-slider'),
+							'centerCenter'	=> __('centerCenter position', 'cherry-slider'),
 						)
 					),
 					array(
@@ -197,10 +197,10 @@ class Cherry_Simple_Slider_Meta_Boxes {
 						'class'			=> 'width-full',
 						'value'			=> 'left',
 						'options'		=> array(
-							'left'		=> __('Left transition', 'cherry-portfolio'),
-							'right'		=> __('Right transition', 'cherry-portfolio'),
-							'up'		=> __('Up transition', 'cherry-portfolio'),
-							'down'		=> __('Down transition', 'cherry-portfolio'),
+							'left'		=> __('Left transition', 'cherry-slider'),
+							'right'		=> __('Right transition', 'cherry-slider'),
+							'up'		=> __('Up transition', 'cherry-slider'),
+							'down'		=> __('Down transition', 'cherry-slider'),
 						)
 					),
 					array(
@@ -229,10 +229,10 @@ class Cherry_Simple_Slider_Meta_Boxes {
 						'class'			=> 'width-full',
 						'value'			=> 'left',
 						'options'		=> array(
-							'left'		=> __('Left transition', 'cherry-portfolio'),
-							'right'		=> __('Right transition', 'cherry-portfolio'),
-							'up'		=> __('Up transition', 'cherry-portfolio'),
-							'down'		=> __('Down transition', 'cherry-portfolio'),
+							'left'		=> __('Left transition', 'cherry-slider'),
+							'right'		=> __('Right transition', 'cherry-slider'),
+							'up'		=> __('Up transition', 'cherry-slider'),
+							'down'		=> __('Down transition', 'cherry-slider'),
 						)
 					),
 					array(
