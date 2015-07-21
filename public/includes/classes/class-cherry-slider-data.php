@@ -120,13 +120,20 @@ class Cherry_Slider_Data {
 	public function get_query_slider_items( $query_args = '' ) {
 		$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 
-		$defaults_tax_query_args = apply_filters( 'cherry_the_slider_default_tax_query_args', array(
-			'taxonomy' => CHERRY_SLIDER_NAME . '_sliders',
-			'field'    => 'slug',
-			'terms'    => '',
-		) );
+		$slider_name    = Slider_Options::cherry_slider_get_option( 'cherry-slider-name', '' );
+		$tax_query_args = '';
 
-		$tax_query_args = wp_parse_args( array( 'terms' => Slider_Options::cherry_slider_get_option( 'cherry-slider-name', '' ) ) , $defaults_tax_query_args );
+		if ( ! empty( $slider_name ) ) {
+
+			$defaults_tax_query_args = apply_filters( 'cherry_the_slider_default_tax_query_args', array(
+				'taxonomy' => CHERRY_SLIDER_NAME . '_sliders',
+				'field'    => 'slug',
+				'terms'    => '',
+			) );
+
+			$tax_query_args = wp_parse_args( array( 'terms' => $slider_name ) , $defaults_tax_query_args );
+
+		}
 
 		$defaults_query_args = apply_filters( 'cherry_the_slider_default_query_args', array(
 			'post_type'      => CHERRY_SLIDER_NAME,
