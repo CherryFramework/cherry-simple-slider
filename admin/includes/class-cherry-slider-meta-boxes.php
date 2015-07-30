@@ -193,7 +193,7 @@ class Cherry_Simple_Slider_Meta_Boxes {
 						'id'			=> 'slider-standart-content-show-transition',
 						'type'			=> 'select',
 						'label'			=> __('Content show transition', 'cherry-slider'),
-						'decsription'	=> __('Sets the transition of the layer when it appears in the slide. Can be set to left, right, up or down, these values describing the direction in which the layer will move when it appears.', 'cherry-slider'),
+						'decsription'	=> __('Sets the transition of the layer when it appears in the slide. Can be set to left, right, up or down, these values describe the direction in which the layer will move when it appears.', 'cherry-slider'),
 						'class'			=> 'width-full',
 						'value'			=> 'left',
 						'options'		=> array(
@@ -225,7 +225,7 @@ class Cherry_Simple_Slider_Meta_Boxes {
 						'id'			=> 'slider-standart-content-hide-transition',
 						'type'			=> 'select',
 						'label'			=> __('Content hide transition', 'cherry-slider'),
-						'decsription'	=> __('Sets the transition of the layer when it disappears from the slide. Can be set to left, right, up or down, these values describing the direction in which the layer will move when it disappears.', 'cherry-slider'),
+						'decsription'	=> __('Sets the transition of the layer when it disappears from the slide. Can be set to left, right, up or down, these values describe the direction in which the layer will move when it disappears.', 'cherry-slider'),
 						'class'			=> 'width-full',
 						'value'			=> 'left',
 						'options'		=> array(
@@ -300,7 +300,7 @@ class Cherry_Simple_Slider_Meta_Boxes {
 							'id'				=> 'slider-audio-src',
 							'type'				=> 'media',
 							'label'				=> __('Audio source', 'cherry-slider'),
-							'decsription'		=> __('Enter source audio( mp3, m4a, ogg, wav, wma )', 'cherry-slider'),
+							'decsription'		=> __('Enter audio source( mp3, m4a, ogg, wav, wma )', 'cherry-slider'),
 							'value'				=> '',
 							'display_image'		=> true,
 							'multi_upload'		=> true,

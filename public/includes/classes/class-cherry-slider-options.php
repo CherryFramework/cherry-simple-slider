@@ -167,7 +167,7 @@ if ( !class_exists( 'Slider_Options' ) ) {
 				'decsription'	=> __('Indicates if the size of the slider will be forced to full width or full window.', 'cherry-slider'),
 				'hint'			=>  array(
 					'type'		=> 'text',
-					'content'	=> __("Note: It's possible to make the slider full width or full window by giving it a width and/or height of '100%'. However, sometimes the slider might be inside other containers which are less than full width/window. The 'forceSize' property is useful in those situations because it will still enlarge the slider to fill the width or window by overflowing its parent elements.", 'cherry-slider'),
+					'content'	=> __("Note: It's possible to make the slider full width or full window by giving it width and/or height of '100%'. However, sometimes the slider might be inside other containers which are less than full width/window. The 'forceSize' property is useful in those situations because it will still enlarge the slider to fill the width or window by overflowing its parent elements.", 'cherry-slider'),
 				),
 				'value'			=> 'none',
 				'class'			=> 'width-full',
