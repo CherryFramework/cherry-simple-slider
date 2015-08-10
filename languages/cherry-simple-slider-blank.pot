@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: blank\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-20 18:20+0300\n"
+"POT-Creation-Date: 2015-07-30 17:04+0300\n"
 "PO-Revision-Date: 2015-04-06 06:14+0300\n"
 "Last-Translator: Vladimir Anokhin <ano.vladimir@gmail.com>\n"
 "Language-Team: Cherry Team <support@cherryframework.com>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "esc_attr__;_x:1,2c;_n:1,2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.8.2\n"
+"X-Generator: Poedit 1.8.3\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -106,7 +106,7 @@ msgstr ""
 #: admin/includes/class-cherry-slider-meta-boxes.php:196
 msgid ""
 "Sets the transition of the layer when it appears in the slide. Can be set to "
-"left, right, up or down, these values describing the direction in which the "
+"left, right, up or down, these values describe the direction in which the "
 "layer will move when it appears."
 msgstr ""
 
@@ -153,8 +153,8 @@ msgstr ""
 #: admin/includes/class-cherry-slider-meta-boxes.php:228
 msgid ""
 "Sets the transition of the layer when it disappears from the slide. Can be "
-"set to left, right, up or down, these values describing the direction in "
-"which the layer will move when it disappears."
+"set to left, right, up or down, these values describe the direction in which "
+"the layer will move when it disappears."
 msgstr ""
 
 #: admin/includes/class-cherry-slider-meta-boxes.php:241
@@ -224,7 +224,7 @@ msgid "Audio source"
 msgstr ""
 
 #: admin/includes/class-cherry-slider-meta-boxes.php:303
-msgid "Enter source audio( mp3, m4a, ogg, wav, wma )"
+msgid "Enter audio source( mp3, m4a, ogg, wav, wma )"
 msgstr ""
 
 #: admin/includes/class-cherry-slider-meta-boxes.php:323
@@ -271,8 +271,8 @@ msgstr ""
 msgid "Simple Slider"
 msgstr ""
 
-#: public/includes/classes/class-cherry-slider-data.php:183
-#: public/includes/classes/class-cherry-slider-data.php:301
+#: public/includes/classes/class-cherry-slider-data.php:195
+#: public/includes/classes/class-cherry-slider-data.php:313
 msgid "Posts not found"
 msgstr ""
 
@@ -377,7 +377,7 @@ msgstr ""
 #: public/includes/classes/class-cherry-slider-options.php:170
 msgid ""
 "Note: It's possible to make the slider full width or full window by giving "
-"it a width and/or height of '100%'. However, sometimes the slider might be "
+"it width and/or height of '100%'. However, sometimes the slider might be "
 "inside other containers which are less than full width/window. The "
 "'forceSize' property is useful in those situations because it will still "
 "enlarge the slider to fill the width or window by overflowing its parent "
