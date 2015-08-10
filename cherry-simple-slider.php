@@ -86,11 +86,7 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 			 *
 			 * @since 1.0.0
 			 */
-<<<<<<< HEAD
-			define( 'CHERRY_SLIDER_VERSION', '1.0.1' );
-=======
 			define( 'CHERRY_SLIDER_VERSION', '1.0.2' );
->>>>>>> 7b2a77099a72d20c98e5d3f4052be9d453e1cc08
 
 			/**
 			 * Set the slug of the plugin.
