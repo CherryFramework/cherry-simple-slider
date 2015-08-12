@@ -75,11 +75,73 @@ class Cherry_Slider_Shortcode extends Cherry_Slider_Data {
 	 */
 	public function shortcodes( $shortcodes ) {
 		$shortcodes[ self::$name ] = array(
-			'name'  => __( 'Slider', 'cherry-slider' ), // Shortcode name.
+			'name'  => __( 'Simple Slider', 'cherry-slider' ), // Shortcode name.
 			'desc'  => 'This is a Slider Shortcode',
 			'type'  => 'single', // Can be 'wrap' or 'single'. Example: [b]this is wrapped[/b], [this_is_single]
-			'group' => 'content', // Can be 'content', 'box', 'media' or 'other'. Groups can be mixed, for example 'content box'.
+			'group' => 'media', // Can be 'content', 'box', 'media' or 'other'. Groups can be mixed, for example 'content box'.
 			'atts'  => array( // List of shortcode params (attributes).
+					'posts_per_page' => array(
+						'type'    => 'number',
+						'min'     => -1,
+						'max'     => 50,
+						'step'    => 1,
+						'default' => 5,
+						'name'    => __( 'Post per page', 'cherry-slider' ),
+						'desc'    => __( 'Specify number of posts that you want to show. Enter -1 to get all posts', 'cherry-slider' ),
+					),
+					'slider_width' => array(
+						'default' => '100%',
+						'name'    => __( 'Slider width', 'cherry-slider' ),
+						'desc'    => __( 'Sets the width of the slider', 'cherry-slider' )
+					),
+					'slider_height' => array(
+						'default' => '600',
+						'name'    => __( 'Slider height', 'cherry-slider' ),
+						'desc'    => __( 'Sets the height of the slider', 'cherry-slider' )
+					),
+					'slider_orientation' => array(
+						'type'    => 'select',
+						'values'  => array(
+							'horizontal'	=> __('Horizontal', 'cherry-slider'),
+							'vertical'		=> __('Vertical', 'cherry-slider'),
+						),
+						'default' => 'horizontal',
+						'name'    => __( 'Slider orientation', 'cherry-slider' ),
+						'desc'    => __( 'Indicates whether the slides will be arranged horizontally or vertically', 'cherry-slider' ),
+					),
+					'slider_slide_distance' => array(
+						'type'    => 'slider',
+						'min'     => 0,
+						'max'     => 100,
+						'step'    => 1,
+						'default' => 10,
+						'name'    => __( 'Slide distance', 'cherry-slider' ),
+						'desc'    => __( 'Sets the distance between the slides', 'cherry-slider' ),
+					),
+					'slider_navigation' => array(
+						'type'    => 'bool',
+						'default' => 'yes',
+						'name'    => __( 'Slider navigation', 'cherry-slider' ),
+						'desc'    => __( 'Indicates whether the arrow buttons will be created', 'cherry-slider' ),
+					),
+					'slider_pagination' => array(
+						'type'    => 'bool',
+						'default' => 'yes',
+						'name'    => __( 'Slider pagination', 'cherry-slider' ),
+						'desc'    => __( 'Indicates whether the pagination will be created', 'cherry-slider' ),
+					),
+					'slider_autoplay' => array(
+						'type'    => 'bool',
+						'default' => 'yes',
+						'name'    => __( 'Slider autoplay', 'cherry-slider' ),
+						'desc'    => __( 'Indicates whether or not autoplay will be enabled', 'cherry-slider' ),
+					),
+					'slider_fullScreen' => array(
+						'type'    => 'bool',
+						'default' => 'yes',
+						'name'    => __( 'Slider fullScreen', 'cherry-slider' ),
+						'desc'    => __( 'Indicates whether the full-screen button is enabled', 'cherry-slider' ),
+					),
 					'custom_class' => array(
 						'default' => '',
 						'name'    => __( 'Class', 'cherry-slider' ),
@@ -112,7 +174,16 @@ class Cherry_Slider_Shortcode extends Cherry_Slider_Data {
 
 		// Set up the default arguments.
 		$defaults = array(
-			'custom_class'   => '',
+			'posts_per_page'		=> 9,
+			'slider_width'			=> '100%',
+			'slider_height'			=> '600',
+			'slider_orientation'	=> 'horizontal',
+			'slider_slide_distance'	=> 10,
+			'slider_navigation'		=> 'yes',
+			'slider_pagination'		=> 'yes',
+			'slider_autoplay'		=> 'yes',
+			'slider_fullScreen'		=> 'yes',
+			'custom_class'			=> '',
 		);
 
 		/**
@@ -122,6 +193,10 @@ class Cherry_Slider_Shortcode extends Cherry_Slider_Data {
 		 */
 		$atts = shortcode_atts( $defaults, $atts, $shortcode );
 
+		$atts['slider_navigation']	= ( bool ) ( $atts['slider_navigation'] === 'yes' ) ? true : false;
+		$atts['slider_pagination']	= ( bool ) ( $atts['slider_pagination'] === 'yes' ) ? true : false;
+		$atts['slider_autoplay']	= ( bool ) ( $atts['slider_autoplay'] === 'yes' ) ? true : false;
+		$atts['slider_fullScreen']	= ( bool ) ( $atts['slider_autoplay'] === 'yes' ) ? true : false;
 
 		return $this->the_slider( $atts );
 	}

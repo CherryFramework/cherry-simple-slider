@@ -32,11 +32,7 @@ if ( !class_exists( 'Slider_Options' ) ) {
 		}
 
 		static function set_slider_options() {
-			self::set_option_value( 'slider_width', '100%' );
-			self::set_option_value( 'slider_height', 600 );
 			self::set_option_value( 'image_size', 'thumb-xl' );
-			self::set_option_value( 'posts_per_page', 5 );
-
 			self::set_option_value( 'is_image_crop', false );
 			self::set_option_value( 'image_crop_width', 1170 );
 			self::set_option_value( 'image_crop_height', 780 );
@@ -197,7 +193,7 @@ if ( !class_exists( 'Slider_Options' ) ) {
 				'type'			=> 'slider',
 				'title'			=> __('Slide distance', 'cherry'),
 				'label'			=> '',
-				'decsription'	=> 'Sets the distance between the slides.',
+				'decsription'	=> __('Sets the distance between the slides.', 'cherry'),
 				'max_value'		=> 500,
 				'min_value'		=> 0,
 				'value'			=> 10
