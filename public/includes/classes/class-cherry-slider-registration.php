@@ -108,7 +108,7 @@ class Cherry_Slider_Registration {
 			return;
 		}
 
-		$args = apply_filters( 'cherry_portfolio_add_post_formats_support', array( 'image', 'video', ) );
+		$args = apply_filters( 'cherry_slider_add_post_formats_support', array( 'image', 'video', ) );
 
 		add_post_type_support( CHERRY_SLIDER_NAME, 'post-formats', $args );
 		add_theme_support( 'post-formats', $args );

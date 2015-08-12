@@ -102,8 +102,8 @@ if ( !class_exists( 'Slider_Options' ) ) {
 			);
 			$slider_options['cherry-slider-order'] = array(
 				'type'			=> 'select',
-				'title'			=> __('Slides order', 'cherry-portfolio'),
-				'decsription'	=> __("Designates the ascending or descending order of the 'orderby' parameter.", 'cherry-portfolio'),
+				'title'			=> __('Slides order', 'cherry-slider'),
+				'decsription'	=> __("Designates the ascending or descending order of the 'orderby' parameter.", 'cherry-slider'),
 				'value'			=> 'DESC',
 				'class'			=> 'width-full',
 				'options'		=> array(
@@ -159,8 +159,8 @@ if ( !class_exists( 'Slider_Options' ) ) {
 			);
 			$slider_options['cherry-slider-force-size'] = array(
 				'type'			=> 'select',
-				'title'			=> __('Slider forceSize', 'cherry-portfolio'),
-				'decsription'	=> __('Indicates if the size of the slider will be forced to full width or full window.', 'cherry-portfolio'),
+				'title'			=> __('Slider forceSize', 'cherry-slider'),
+				'decsription'	=> __('Indicates if the size of the slider will be forced to full width or full window.', 'cherry-slider'),
 				'hint'			=>  array(
 					'type'		=> 'text',
 					'content'	=> __("Note: It's possible to make the slider full width or full window by giving it a width and/or height of '100%'. However, sometimes the slider might be inside other containers which are less than full width/window. The 'forceSize' property is useful in those situations because it will still enlarge the slider to fill the width or window by overflowing its parent elements.", 'cherry-slider'),

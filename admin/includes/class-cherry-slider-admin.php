@@ -90,7 +90,7 @@ class Cherry_Slider_Admin {
 	<?php }
 
 	/**
-	 * Filters the columns on the "Portfolio list" screen.
+	 * Filters the columns on the "Slider list" screen.
 	 *
 	 * @since  1.0.0
 	 * @param  array $post_columns
