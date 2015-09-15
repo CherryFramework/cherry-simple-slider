@@ -132,6 +132,10 @@ class Cherry_Simple_Slider_Meta_Boxes {
 				'pattern'		=> 'inline',
 				'class'			=> array( 'section' => 'single-section' ),
 			) );
+
+			$builder->enqueue_builder_scripts();
+			$builder->enqueue_builder_styles();
+
 			$output .= $builder->add_form_item( $settings );
 		endforeach;
 		printf( '<div class="%1$s cherry-ui-core">%2$s</div>', 'settings-item', $output );
