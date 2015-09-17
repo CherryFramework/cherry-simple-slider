@@ -105,6 +105,8 @@ class Cherry_Slider_Data {
 					}
 				$html .= '</div>';
 			$html .= '</div>';
+
+			wp_enqueue_script( 'cherry-slider-script' );
 		}
 
 		echo $html;
