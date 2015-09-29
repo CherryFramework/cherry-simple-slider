@@ -3,7 +3,7 @@
  * Plugin Name: Cherry Simple Slider
  * Plugin URI:  http://www.cherryframework.com/
  * Description: A Slider plugin for WordPress.
- * Version:     1.0.2
+ * Version:     1.0.3
  * Author:      Cherry Team
  * Author URI:  http://www.cherryframework.com/
  * Text Domain: cherry-simple-slider
@@ -86,7 +86,7 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 			 *
 			 * @since 1.0.0
 			 */
-			define( 'CHERRY_SLIDER_VERSION', '1.0.2' );
+			define( 'CHERRY_SLIDER_VERSION', '1.0.3' );
 
 			/**
 			 * Set the slug of the plugin.
@@ -233,8 +233,8 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 		 * @since 1.0.0
 		 */
 		public function enqueue_scripts() {
-			wp_enqueue_script( 'slider-pro-script', trailingslashit( CHERRY_SLIDER_URI ) . 'public/assets/js/jquery-slider-pro.js', array( 'jquery' ), CHERRY_SLIDER_VERSION);
-			wp_enqueue_script( 'cherry-slider-script', trailingslashit( CHERRY_SLIDER_URI ) . 'public/assets/js/cherry-slider-scripts.js', array( 'jquery' ), CHERRY_SLIDER_VERSION);
+			wp_register_script( 'slider-pro-script', trailingslashit( CHERRY_SLIDER_URI ) . 'public/assets/js/jquery-slider-pro.min.js', array( 'jquery' ), CHERRY_SLIDER_VERSION, true );
+			wp_register_script( 'cherry-slider-script', trailingslashit( CHERRY_SLIDER_URI ) . 'public/assets/js/cherry-slider-scripts.min.js', array( 'slider-pro-script' ), CHERRY_SLIDER_VERSION, true );
 		}
 
 		/**
