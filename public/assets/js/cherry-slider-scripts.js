@@ -36,41 +36,43 @@
 				,	sliderReachVideoAction = slider.data('reach-video-action')
 				;
 
-				$( '#'+sliderId ).sliderPro({
-					width: sliderWidth,
-					height: sliderHeight,
-					visibleSize: sliderVisibleSize,
-					forceSize: sliderForceSize,
-					orientation: sliderOrientation,
-					slideDistance: slideDistance,
-					slideAnimationDuration: slideDuration,
-					fade: sliderFade,
-					arrows: sliderNavigation,
-					fadeArrows: sliderFadeNavigation,
-					buttons: sliderPagination,
-					autoplay: sliderAutoplay,
-					fullScreen: sliderFullScreen,
-					shuffle: sliderShuffle,
-					loop: sliderLoop,
-					waitForLayers: true,
-					thumbnailArrows: sliderThumbnailsArrows,
-					thumbnailsPosition: sliderThumbnailsPosition,
-					thumbnailWidth: sliderThumbnailsWidth,
-					thumbnailHeight: sliderThumbnailsHeight,
-					reachVideoAction: sliderReachVideoAction,
-					init: function(){
-						$( this ).resize();
-						slider.fadeTo(500, 1);
-					},
-					breakpoints: {
-						992: {
-							height: slider992Height
+				if( $('.sp-slide', '#'+sliderId ).length > 0 ){
+					$( '#'+sliderId ).sliderPro({
+						width: sliderWidth,
+						height: sliderHeight,
+						visibleSize: sliderVisibleSize,
+						forceSize: sliderForceSize,
+						orientation: sliderOrientation,
+						slideDistance: slideDistance,
+						slideAnimationDuration: slideDuration,
+						fade: sliderFade,
+						arrows: sliderNavigation,
+						fadeArrows: sliderFadeNavigation,
+						buttons: sliderPagination,
+						autoplay: sliderAutoplay,
+						fullScreen: sliderFullScreen,
+						shuffle: sliderShuffle,
+						loop: sliderLoop,
+						waitForLayers: true,
+						thumbnailArrows: sliderThumbnailsArrows,
+						thumbnailsPosition: sliderThumbnailsPosition,
+						thumbnailWidth: sliderThumbnailsWidth,
+						thumbnailHeight: sliderThumbnailsHeight,
+						reachVideoAction: sliderReachVideoAction,
+						init: function(){
+							$( this ).resize();
+							slider.fadeTo(500, 1);
 						},
-						768: {
-							height: slider768Height
+						breakpoints: {
+							992: {
+								height: slider992Height
+							},
+							768: {
+								height: slider768Height
+							}
 						}
-					}
-				});
+					});
+				}
 			}
 		)//each end
 	}

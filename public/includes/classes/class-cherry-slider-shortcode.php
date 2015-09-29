@@ -80,6 +80,11 @@ class Cherry_Slider_Shortcode extends Cherry_Slider_Data {
 			'type'  => 'single', // Can be 'wrap' or 'single'. Example: [b]this is wrapped[/b], [this_is_single]
 			'group' => 'media', // Can be 'content', 'box', 'media' or 'other'. Groups can be mixed, for example 'content box'.
 			'atts'  => array( // List of shortcode params (attributes).
+					'cherry_slider_sliders' => array(
+						'default' => '',
+						'name'    => __( 'Slider name', 'cherry-slider' ),
+						'desc'    => __( 'Leave field blank, if you need all of the slides', 'cherry-slider' )
+					),
 					'posts_per_page' => array(
 						'type'    => 'number',
 						'min'     => -1,
@@ -174,16 +179,17 @@ class Cherry_Slider_Shortcode extends Cherry_Slider_Data {
 
 		// Set up the default arguments.
 		$defaults = array(
-			'posts_per_page'		=> 9,
-			'slider_width'			=> '100%',
-			'slider_height'			=> '600',
-			'slider_orientation'	=> 'horizontal',
-			'slider_slide_distance'	=> 10,
-			'slider_navigation'		=> 'yes',
-			'slider_pagination'		=> 'yes',
-			'slider_autoplay'		=> 'yes',
-			'slider_fullScreen'		=> 'yes',
-			'custom_class'			=> '',
+			'cherry_slider_sliders'		=> '',
+			'posts_per_page'			=> 9,
+			'slider_width'				=> '100%',
+			'slider_height'				=> '600',
+			'slider_orientation'		=> 'horizontal',
+			'slider_slide_distance'		=> 10,
+			'slider_navigation'			=> 'yes',
+			'slider_pagination'			=> 'yes',
+			'slider_autoplay'			=> 'yes',
+			'slider_fullScreen'			=> 'yes',
+			'custom_class'				=> '',
 		);
 
 		/**

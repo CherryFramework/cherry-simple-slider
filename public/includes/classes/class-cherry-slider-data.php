@@ -62,7 +62,6 @@ class Cherry_Slider_Data {
 		$default_options = apply_filters( 'cherry_the_slider_default_options', Slider_Options::$options );
 		// default options marge
 		$options = wp_parse_args( $options, $default_options );
-
 		$html = '';
 		// The Query.
 		$posts_query = $this->get_query_slider_items( $options );
@@ -120,9 +119,9 @@ class Cherry_Slider_Data {
 	public function get_query_slider_items( $query_args = '' ) {
 		$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 
-		$slider_name    = Slider_Options::cherry_slider_get_option( 'cherry-slider-name', '' );
-		$tax_query_args = '';
+		$slider_name    = $query_args['cherry_slider_sliders' ];
 
+		$tax_query_args = '';
 		if ( ! empty( $slider_name ) ) {
 
 			$defaults_tax_query_args = apply_filters( 'cherry_the_slider_default_tax_query_args', array(
@@ -159,7 +158,6 @@ class Cherry_Slider_Data {
 		}
 	}
 
-
 	public function get_slider_thumbnails( $posts_query ) {
 		$html = '';
 
@@ -192,7 +190,7 @@ class Cherry_Slider_Data {
 
 				endwhile;
 			} else {
-				echo '<h4>' . __( 'Posts not found', 'cherry-slider' ) . '</h4>';
+				echo '<h4>' . __( 'Slides not found', 'cherry-slider' ) . '</h4>';
 			}
 
 		// Reset the query.
