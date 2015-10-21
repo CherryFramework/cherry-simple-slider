@@ -30,7 +30,7 @@ class cherry_slider_static extends cherry_register_static {
 		//get_search_form( true );
 		if( class_exists('Cherry_Slider_Data') ){
 			$slider = new Cherry_Slider_Data;
-			$slider->the_slider();
+			echo $slider->the_slider();
 		}
 	}
 }

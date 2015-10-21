@@ -108,7 +108,7 @@ class Cherry_Slider_Data {
 			wp_enqueue_script( 'cherry-slider-script' );
 		}
 
-		echo $html;
+		return $html;
 	}
 
 	/**
