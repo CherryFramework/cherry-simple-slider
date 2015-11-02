@@ -62,6 +62,7 @@ class Cherry_Slider_Data {
 		$default_options = apply_filters( 'cherry_the_slider_default_options', Slider_Options::$options );
 		// default options marge
 		$options = wp_parse_args( $options, $default_options );
+
 		$html = '';
 		// The Query.
 		$posts_query = $this->get_query_slider_items( $options );
@@ -108,7 +109,7 @@ class Cherry_Slider_Data {
 			wp_enqueue_script( 'cherry-slider-script' );
 		}
 
-		echo $html;
+		return $html;
 	}
 
 	/**

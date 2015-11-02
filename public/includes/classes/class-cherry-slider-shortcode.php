@@ -199,10 +199,10 @@ class Cherry_Slider_Shortcode extends Cherry_Slider_Data {
 		 */
 		$atts = shortcode_atts( $defaults, $atts, $shortcode );
 
-		$atts['slider_navigation']	= ( bool ) ( $atts['slider_navigation'] === 'yes' ) ? true : false;
-		$atts['slider_pagination']	= ( bool ) ( $atts['slider_pagination'] === 'yes' ) ? true : false;
-		$atts['slider_autoplay']	= ( bool ) ( $atts['slider_autoplay'] === 'yes' ) ? true : false;
-		$atts['slider_fullScreen']	= ( bool ) ( $atts['slider_autoplay'] === 'yes' ) ? true : false;
+		$atts['slider_navigation']	= ( bool ) ( $atts['slider_navigation'] === 'yes' ) ? 'true' : 'false';
+		$atts['slider_pagination']	= ( bool ) ( $atts['slider_pagination'] === 'yes' ) ? 'true' : 'false';
+		$atts['slider_autoplay']	= ( bool ) ( $atts['slider_autoplay'] === 'yes' ) ? 'true' : 'false';
+		$atts['slider_fullScreen']	= ( bool ) ( $atts['slider_fullScreen'] === 'yes' ) ? 'true' : 'false';
 
 		return $this->the_slider( $atts );
 	}
