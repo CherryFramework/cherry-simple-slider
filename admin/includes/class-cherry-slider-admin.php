@@ -36,8 +36,9 @@ class Cherry_Slider_Admin {
 		// Only run our customization on the 'edit.php' page in the admin.
 		add_action( 'load-edit.php', array( $this, 'load_edit' ) );
 
-		// Modify the columns on the "Testimonials" screen.
-		add_filter( 'manage_edit-cherry_slider_columns', array( $this, 'edit_cherry_slider_columns' ) );
+		// Modify the columns on the "Slides" screen.
+		add_filter( 'manage_edit-cherry_slider_columns',        array( $this, 'edit_cherry_slider_columns'   ) );
+
 		add_action( 'manage_cherry_slider_posts_custom_column', array( $this, 'manage_cherry_slider_columns' ), 10, 2 );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
@@ -83,9 +84,7 @@ class Cherry_Slider_Admin {
 	public function print_styles() { ?>
 		<style type="text/css">
 		.edit-php .wp-list-table td.thumbnail.column-thumbnail,
-		.edit-php .wp-list-table th.manage-column.column-thumbnail,
-		.edit-php .wp-list-table td.author_name.column-author_name,
-		.edit-php .wp-list-table th.manage-column.column-author_name {
+		.edit-php .wp-list-table th.manage-column.column-thumbnail {
 			text-align: center;
 		}
 		</style>
@@ -100,17 +99,19 @@ class Cherry_Slider_Admin {
 	 */
 	public function edit_cherry_slider_columns( $post_columns ) {
 
-		// Adds the checkbox column.
-		$columns['cb'] = $post_columns['cb'];
+		unset(
+			$post_columns['author'],
+			$post_columns['date'],
+			$post_columns['comments']
+		);
 
-		// Add custom columns and overwrite the 'title' column.
-		$columns['title'] = __( 'Title', 'cherry-slider' );
-		$columns[ CHERRY_SLIDER_NAME . '_sliders' ] = __( 'Slider', 'cherry-slider' );
-		$columns['date'] = __( 'Date', 'cherry-slider' );
-		$columns['preview'] = __( 'Preview', 'cherry-slider' );
+		// Add custom columns.
+		$post_columns[ CHERRY_SLIDER_NAME . '_sliders' ] = __( 'Slider', 'cherry-slider' );
+		$post_columns['date']                            = __( 'Date', 'cherry-slider' );
+		$post_columns['thumbnail']                       = __( 'Preview', 'cherry-slider' );
 
 		// Return the columns.
-		return $columns;
+		return $post_columns;
 	}
 
 	/**
@@ -145,7 +146,7 @@ class Cherry_Slider_Admin {
 
 			break;
 
-			case 'preview' :
+			case 'thumbnail' :
 
 				$thumb = get_the_post_thumbnail( $post_id, array( 75, 75 ) );
 				echo ! empty( $thumb ) ? $thumb : '&mdash;' ;
