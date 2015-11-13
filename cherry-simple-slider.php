@@ -3,22 +3,27 @@
  * Plugin Name: Cherry Simple Slider
  * Plugin URI:  http://www.cherryframework.com/
  * Description: A Slider plugin for WordPress.
- * Version:     1.0.3.1
+ * Version:     1.0.4
  * Author:      Cherry Team
  * Author URI:  http://www.cherryframework.com/
  * Text Domain: cherry-simple-slider
  * License:     GPL-3.0+
  * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
  * Domain Path: /languages
+ *
+ * @package  Cherry Simple Slider
+ * @category Core
+ * @author   Cherry Team
+ * @license  GPL-2.0+
  */
 
 // If this file is called directly, abort.
-if ( !defined( 'WPINC' ) ) {
+if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
 // If class 'Cherry_Slider' not exists.
-if ( !class_exists( 'Cherry_Slider' ) ) {
+if ( ! class_exists( 'Cherry_Slider' ) ) {
 
 	/**
 	 * Sets up and initializes the Cherry_Slider plugin.
@@ -46,24 +51,25 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 			add_action( 'plugins_loaded', array( $this, 'constants' ), 1 );
 
 			// Internationalize the text strings used.
-			add_action( 'plugins_loaded', array( $this, 'lang' ),      2 );
+			add_action( 'plugins_loaded', array( $this, 'lang' ), 2 );
 
 			// Load the functions files.
-			add_action( 'plugins_loaded', array( $this, 'includes' ),  3 );
+			add_action( 'plugins_loaded', array( $this, 'includes' ), 3 );
 
 			// Load the admin files.
-			add_action( 'plugins_loaded', array( $this, 'admin' ),     4 );
+			add_action( 'plugins_loaded', array( $this, 'admin' ), 4 );
 
 			add_action( 'init', array( $this, 'register_static' ), 11 );
 
 			// Load public-facing style sheet.
-			add_action( 'wp_enqueue_scripts',         array( $this, 'enqueue_styles' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 			add_filter( 'cherry_compiler_static_css', array( $this, 'add_style_to_compiler' ) );
+
 			// Load public-facing JavaScript.
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
 			// Register activation and deactivation hook.
-			register_activation_hook( __FILE__, array( $this, 'activation'     ) );
+			register_activation_hook( __FILE__, array( $this, 'activation' ) );
 			register_deactivation_hook( __FILE__, array( $this, 'deactivation' ) );
 		}
 
@@ -86,7 +92,7 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 			 *
 			 * @since 1.0.0
 			 */
-			define( 'CHERRY_SLIDER_VERSION', '1.0.3.1' );
+			define( 'CHERRY_SLIDER_VERSION', '1.0.4' );
 
 			/**
 			 * Set the slug of the plugin.
@@ -120,6 +126,7 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 		/**
 		 * Loads files from the '/inc' folder.
 		 *
+		 * @return void
 		 * @since 1.0.0
 		 */
 		function includes() {
@@ -133,6 +140,7 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 		/**
 		 * Register static.
 		 *
+		 * @return void
 		 * @since 1.0.0
 		 */
 		public function register_static() {
@@ -150,6 +158,7 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 			// If file found in child theme - include it and break function.
 			if ( file_exists( $abspath ) ) {
 				require_once $abspath;
+
 				return;
 			}
 
@@ -164,6 +173,7 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 
 			if ( file_exists( $abspath ) ) {
 				require_once $abspath;
+
 				return;
 			}
 
@@ -173,6 +183,7 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 		/**
 		 * Loads the translation files.
 		 *
+		 * @return void
 		 * @since 1.0.0
 		 */
 		function lang() {
@@ -182,6 +193,7 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 		/**
 		 * Loads admin files.
 		 *
+		 * @return void
 		 * @since 1.0.0
 		 */
 		function admin() {
@@ -191,9 +203,9 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 
 				$Cherry_Plugin_Update = new Cherry_Plugin_Update();
 				$Cherry_Plugin_Update -> init( array(
-						'version'			=> CHERRY_SLIDER_VERSION,
-						'slug'				=> CHERRY_SLIDER_SLUG,
-						'repository_name'	=> CHERRY_SLIDER_SLUG
+					'version'			=> CHERRY_SLIDER_VERSION,
+					'slug'				=> CHERRY_SLIDER_SLUG,
+					'repository_name'	=> CHERRY_SLIDER_SLUG,
 				));
 			}
 		}
@@ -201,6 +213,7 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 		/**
 		 * Register and enqueue public-facing style sheet.
 		 *
+		 * @return void
 		 * @since 1.0.0
 		 */
 		public function enqueue_styles() {
@@ -214,6 +227,8 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 		 * @since 1.0.0
 		 *
 		 * @param array $handles CSS handles to compile.
+		 *
+		 * @return array $handles merged css array.
 		 */
 		function add_style_to_compiler( $handles ) {
 			$handles = array_merge(
@@ -230,6 +245,7 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 		/**
 		 * Register and enqueue public-facing style sheet.
 		 *
+		 * @return void
 		 * @since 1.0.0
 		 */
 		public function enqueue_scripts() {
@@ -240,6 +256,7 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 		/**
 		 * On plugin activation.
 		 *
+		 * @return void
 		 * @since 1.0.0
 		 */
 		function activation() {
@@ -249,6 +266,7 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 		/**
 		 * On plugin deactivation.
 		 *
+		 * @return void
 		 * @since 1.0.0
 		 */
 		function deactivation() {
@@ -264,8 +282,9 @@ if ( !class_exists( 'Cherry_Slider' ) ) {
 		public static function get_instance() {
 
 			// If the single instance hasn't been set, set it now.
-			if ( null == self::$instance )
+			if ( null == self::$instance ) {
 				self::$instance = new self;
+			}
 
 			return self::$instance;
 		}

@@ -35,16 +35,9 @@ class Cherry_Slider_Registration {
 		add_action( 'init', array( $this, 'register' ) );
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
 
-		add_action( 'post.php',          array( $this, 'add_post_formats_support' ) );
+		add_action( 'post.php', array( $this, 'add_post_formats_support' ) );
 		add_action( 'load-post.php', array( $this, 'add_post_formats_support' ) );
 		add_action( 'load-post-new.php', array( $this, 'add_post_formats_support' ) );
-
-		// Removes rewrite rules and then recreate rewrite rules.
-		// add_action( 'init', array( $this, 'rewrite_rules' ) );
-	}
-
-	public function rewrite_rules() {
-		flush_rewrite_rules();
 	}
 
 	/**
@@ -75,7 +68,7 @@ class Cherry_Slider_Registration {
 			'revisions',
 			'page-attributes',
 			'post-formats',
-			'comments'
+			'comments',
 		);
 
 		$args = array(
@@ -83,7 +76,7 @@ class Cherry_Slider_Registration {
 			'supports'        => $supports,
 			'public'          => true,
 			'capability_type' => 'post',
-			'rewrite'         => array( 'slug' => 'slider-archive', ), // Permalinks format
+			'rewrite'         => array( 'slug' => 'slider-archive', ),
 			'menu_position'   => null,
 			'menu_icon'       => ( version_compare( $GLOBALS['wp_version'], '3.8', '>=' ) ) ? 'dashicons-welcome-view-site' : '',
 			'can_export'      => true,
@@ -121,6 +114,7 @@ class Cherry_Slider_Registration {
 	 * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
 	 */
 	public function register_taxonomy() {
+
 		//Register the category taxonomy
 		$category_taxonomy_labels = array(
 			'label'				=> __( 'Sliders', 'cherry-slider' ),
@@ -136,14 +130,15 @@ class Cherry_Slider_Registration {
 			'parent_item_colon' => __( 'Parent Slider:', 'cherry-slider' ),
 			'edit_item'			=> __( 'Edit Slider:', 'cherry-slider' ),
 		);
+
 		$category_taxonomy_args = array(
 			'labels'		=> $category_taxonomy_labels,
 			'hierarchical'	=> true,
 			'rewrite'		=> true,
-			'query_var'		=> true
+			'query_var'		=> true,
 		);
 
-		register_taxonomy( CHERRY_SLIDER_NAME.'_sliders', CHERRY_SLIDER_NAME, $category_taxonomy_args );
+		register_taxonomy( CHERRY_SLIDER_NAME . '_sliders', CHERRY_SLIDER_NAME, $category_taxonomy_args );
 
 	}
 
@@ -156,8 +151,9 @@ class Cherry_Slider_Registration {
 	public static function get_instance() {
 
 		// If the single instance hasn't been set, set it now.
-		if ( null == self::$instance )
+		if ( null == self::$instance ){
 			self::$instance = new self;
+		}
 
 		return self::$instance;
 	}

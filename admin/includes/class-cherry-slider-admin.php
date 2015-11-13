@@ -18,7 +18,6 @@ class Cherry_Slider_Admin {
 	 * @var   object
 	 */
 	private static $instance = null;
-	public $slider_meta_boxes = null;
 
 	/**
 	 * Sets up needed actions/filters for the admin to initialize.
@@ -27,8 +26,9 @@ class Cherry_Slider_Admin {
 	 * @return void
 	 */
 	public function __construct() {
+
 		// Load post meta boxes on the post editing screen.
-		add_action( 'load-post.php',     array( $this, 'load_post_meta_boxes' ) );
+		add_action( 'load-post.php', array( $this, 'load_post_meta_boxes' ) );
 		add_action( 'load-post-new.php', array( $this, 'load_post_meta_boxes' ) );
 
 		add_action( 'wp_ajax_get_slider_format_metabox', array( $this, 'load_post_meta_boxes' ), 10 );
@@ -37,11 +37,11 @@ class Cherry_Slider_Admin {
 		add_action( 'load-edit.php', array( $this, 'load_edit' ) );
 
 		// Modify the columns on the "Testimonials" screen.
-		add_filter( 'manage_edit-cherry_slider_columns',        array( $this, 'edit_cherry_slider_columns'   ) );
+		add_filter( 'manage_edit-cherry_slider_columns', array( $this, 'edit_cherry_slider_columns' ) );
 		add_action( 'manage_cherry_slider_posts_custom_column', array( $this, 'manage_cherry_slider_columns' ), 10, 2 );
 
-		add_action( 'admin_enqueue_scripts',  array( $this, 'enqueue_scripts' ) );
-		add_action( 'admin_enqueue_scripts',  array( $this, 'enqueue_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 
 		add_action( 'wp_ajax_get_slider_format_metabox', array( $this, 'get_slider_format_metabox' ), 20 );
 	}
@@ -64,11 +64,12 @@ class Cherry_Slider_Admin {
 	 * Adds a custom filter on 'request' when viewing the "Slider" screen in the admin.
 	 *
 	 * @since 1.0.0
+	 * @return void
 	 */
 	public function load_edit() {
 		$screen = get_current_screen();
 
-		if ( !empty( $screen->post_type ) && CHERRY_SLIDER_NAME === $screen->post_type ) {
+		if ( ! empty( $screen->post_type ) && CHERRY_SLIDER_NAME === $screen->post_type ) {
 			add_action( 'admin_head', array( $this, 'print_styles' ) );
 		}
 	}
@@ -77,6 +78,7 @@ class Cherry_Slider_Admin {
 	 * Style adjustments for the manage menu items screen.
 	 *
 	 * @since 1.0.0
+	 * @return void
 	 */
 	public function print_styles() { ?>
 		<style type="text/css">
@@ -97,14 +99,15 @@ class Cherry_Slider_Admin {
 	 * @return array
 	 */
 	public function edit_cherry_slider_columns( $post_columns ) {
+
 		// Adds the checkbox column.
 		$columns['cb'] = $post_columns['cb'];
 
 		// Add custom columns and overwrite the 'title' column.
 		$columns['title'] = __( 'Title', 'cherry-slider' );
 		$columns[ CHERRY_SLIDER_NAME . '_sliders' ] = __( 'Slider', 'cherry-slider' );
-		$columns['date']        = __( 'Date', 'cherry-slider' );
-		$columns['preview']   = __( 'Preview', 'cherry-slider' );
+		$columns['date'] = __( 'Date', 'cherry-slider' );
+		$columns['preview'] = __( 'Preview', 'cherry-slider' );
 
 		// Return the columns.
 		return $columns;
@@ -121,20 +124,22 @@ class Cherry_Slider_Admin {
 
 		switch( $column ) {
 
-			case CHERRY_SLIDER_NAME.'_sliders' :
+			case CHERRY_SLIDER_NAME . '_sliders' :
 
 				$post_categories = is_wp_error( get_the_terms($post_id, CHERRY_SLIDER_NAME.'_sliders') ) ?'': get_the_terms($post_id, CHERRY_SLIDER_NAME.'_sliders');
-				if( $post_categories ){
+
+				if ( $post_categories ) {
 					$category_name_list = '';
 					$count = 1;
-						foreach ($post_categories as $category => $category_value) {
-							$category_name_list .= $category_value->name;
-							( $count < count( $post_categories ) ) ? $category_name_list .= ', ':'';
-							$count++;
 
+						foreach ( $post_categories as $category => $category_value ) {
+							$category_name_list .= $category_value->name;
+							( $count < count( $post_categories ) ) ? $category_name_list .= ', ' : '' ;
+							$count++;
 						}
+
 					echo $category_name_list;
-				}else{
+				} else {
 					echo __( 'This slide is not related to any slider', 'cherry-slider' );
 				}
 
@@ -143,35 +148,54 @@ class Cherry_Slider_Admin {
 			case 'preview' :
 
 				$thumb = get_the_post_thumbnail( $post_id, array( 75, 75 ) );
-				echo !empty( $thumb ) ? $thumb : '&mdash;';
+				echo ! empty( $thumb ) ? $thumb : '&mdash;' ;
 
-			break;
-
-			default :
 			break;
 		}
 	}
 
+	/**
+	 * Add scripts in the queue to include.
+	 *
+	 * @since  1.0.0
+	 * @return void
+	 */
 	public function enqueue_scripts() {
 		$screen = get_current_screen();
-		if ( !empty( $screen->post_type ) && CHERRY_SLIDER_NAME === $screen->post_type ) {
-			wp_enqueue_script( 'cherry-simple-slider-admin-scripts', trailingslashit( CHERRY_SLIDER_URI ) . 'admin/assets/js/admin-scripts.js', array( 'jquery' ), CHERRY_SLIDER_VERSION );
 
+		if ( ! empty( $screen->post_type ) && CHERRY_SLIDER_NAME === $screen->post_type ) {
+			wp_enqueue_script( 'cherry-simple-slider-admin-scripts', trailingslashit( CHERRY_SLIDER_URI ) . 'admin/assets/js/admin-scripts.js', array( 'jquery' ), CHERRY_SLIDER_VERSION );
 		}
+
 	}
 
+	/**
+	 * Add styles in the queue to include.
+	 *
+	 * @since  1.0.0
+	 * @return void
+	 */
 	public function enqueue_styles() {
 		$screen = get_current_screen();
-		if ( !empty( $screen->post_type ) && CHERRY_SLIDER_NAME === $screen->post_type ) {
+
+		if ( ! empty( $screen->post_type ) && CHERRY_SLIDER_NAME === $screen->post_type ) {
 			wp_enqueue_style( 'cherry-simple-slider-admin-style', trailingslashit( CHERRY_SLIDER_URI ) . 'admin/assets/css/admin-style.css', array(), CHERRY_SLIDER_VERSION );
 		}
 	}
 
+	/**
+	 * Ajax hook for gerring post format.
+	 *
+	 * @since  1.0.0
+	 * @return void
+	 */
 	public function get_slider_format_metabox() {
-		if ( !empty($_POST) && array_key_exists('post_format', $_POST) && array_key_exists('post_id', $_POST) ) {
+
+		if ( ! empty( $_POST ) && array_key_exists( 'post_format', $_POST ) && array_key_exists( 'post_id', $_POST ) ) {
 			$post_format = $_POST['post_format'];
 			$post_id = $_POST['post_id'];
 			$output = $this->slider_meta_boxes->format_metabox_builder( $post_id, $post_format );
+
 			echo $output;
 			exit;
 		}

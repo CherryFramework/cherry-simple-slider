@@ -24,10 +24,12 @@ class Cherry_Slider_Data {
 	 */
 	private $query_args = array();
 
-	//private $replace_args = array();
-
-	public static $postdata = array();
-
+	/**
+	 * Result query posts.
+	 *
+	 * @since 1.0.0
+	 * @var string
+	 */
 	private $posts_query = '';
 
 	/**
@@ -60,14 +62,16 @@ class Cherry_Slider_Data {
 		 * @param array The 'the_slider_items' function argument.
 		 */
 		$default_options = apply_filters( 'cherry_the_slider_default_options', Slider_Options::$options );
+
 		// default options marge
 		$options = wp_parse_args( $options, $default_options );
 
 		$html = '';
+
 		// The Query.
 		$posts_query = $this->get_query_slider_items( $options );
 
-		if ( !is_wp_error( $posts_query ) ) {
+		if ( ! is_wp_error( $posts_query ) ) {
 			$uniq_id = 'slider-pro-'.uniqid();
 			$slider_html_attr = 'data-id="' . $uniq_id . '"';
 			$slider_html_attr .= 'data-width="' . $options['slider_width'] . '"';
@@ -98,7 +102,7 @@ class Cherry_Slider_Data {
 					$html .= '<div class="sp-slides">';
 						$html .= $this->get_slider_loop( $posts_query );
 					$html .= '</div>';
-					if( $options['slider_thumbnails'] == 'true' ){
+					if( 'true' == $options['slider_thumbnails'] ){
 						$html .= '<div class="sp-thumbnails">';
 							$html .= $this->get_slider_thumbnails( $posts_query );
 						$html .= '</div>';
@@ -122,7 +126,7 @@ class Cherry_Slider_Data {
 	public function get_query_slider_items( $query_args = '' ) {
 		$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 
-		$slider_name    = $query_args['cherry_slider_sliders' ];
+		$slider_name = $query_args['cherry_slider_sliders' ];
 
 		$tax_query_args = '';
 		if ( ! empty( $slider_name ) ) {
@@ -154,7 +158,7 @@ class Cherry_Slider_Data {
 		$posts_query = new WP_Query( $query_args );
 		$this->posts_query = $posts_query;
 
-		if ( !is_wp_error( $posts_query ) ) {
+		if ( ! is_wp_error( $posts_query ) ) {
 			return $posts_query;
 		} else {
 			return false;
@@ -181,8 +185,8 @@ class Cherry_Slider_Data {
 						)
 					);
 
-					//$image = $this->get_image( $post_id, 'thumbnail', $placeholder_args );
-					$img_url = wp_get_attachment_url( $thumb_id ,'full'); //get img URL
+					// Get img URL
+					$img_url = wp_get_attachment_url( $thumb_id ,'full' );
 					$image = $this->get_crop_image( $img_url, Slider_Options::$options['slider_thumbnails_width' ], Slider_Options::$options['slider_thumbnails_height' ], 'sp-thumbnail-image' );
 
 					$html .= '<div class="sp-thumbnail">';
@@ -221,10 +225,10 @@ class Cherry_Slider_Data {
 					$post_type  = get_post_type( $post_id );
 					$permalink  = get_permalink();
 					$title      = get_the_title( $post_id );
-					$video_type = ( isset( $post_meta['slider-video-type'] ) ) ? $post_meta['slider-video-type'] : false;
-					$video_embed = ( isset( $post_meta['slider-embed-video-src'] ) ) ? $post_meta['slider-embed-video-src'] : false;
-					$video_mp4_id = ( isset( $post_meta['slider-mp4-video-id'] ) ) ? $post_meta['slider-mp4-video-id'] : false;
-					$video_ogv_id = ( isset( $post_meta['slider-ogv-video-id'] ) ) ? $post_meta['slider-ogv-video-id'] : false;
+					$video_type = ( isset( $post_meta['slider-video-type'] ) ) ? $post_meta['slider-video-type'] : false ;
+					$video_embed = ( isset( $post_meta['slider-embed-video-src'] ) ) ? $post_meta['slider-embed-video-src'] : false ;
+					$video_mp4_id = ( isset( $post_meta['slider-mp4-video-id'] ) ) ? $post_meta['slider-mp4-video-id'] : false ;
+					$video_ogv_id = ( isset( $post_meta['slider-ogv-video-id'] ) ) ? $post_meta['slider-ogv-video-id'] : false ;
 
 					$content_width = ( isset( $post_meta['slider-standart-content-width'] ) ) ? $post_meta['slider-standart-content-width'] : '50%';
 					$content_vertical = ( isset( $post_meta['slider-standart-content-vertical'] ) ) ? $post_meta['slider-standart-content-vertical'] : '40%';
@@ -239,7 +243,7 @@ class Cherry_Slider_Data {
 
 					$thumb_id = get_post_thumbnail_id();
 					$format = get_post_format( $post_id );
-					$format = (empty( $format )) ? 'post-format-standart' : 'post-format-' . $format;
+					$format = ( empty( $format ) ) ? 'post-format-standart' : 'post-format-' . $format ;
 
 					$placeholder_args = apply_filters( 'cherry_slider_placeholder_args',
 						array(
@@ -252,8 +256,10 @@ class Cherry_Slider_Data {
 						)
 					);
 
-					if(	Slider_Options::$options['is_image_crop'] == "true" ){
-						$img_url = wp_get_attachment_url( $thumb_id ,'full'); //get img URL
+					if(	"true" === Slider_Options::$options['is_image_crop'] ){
+
+						// Get img URL
+						$img_url = wp_get_attachment_url( $thumb_id ,'full');
 						$image = $this->get_crop_image( $img_url, Slider_Options::$options['image_crop_width' ], Slider_Options::$options['image_crop_height' ] );
 					}else{
 						$image = $this->get_image( $post_id, Slider_Options::$options['image_size'], $placeholder_args );
@@ -279,12 +285,10 @@ class Cherry_Slider_Data {
 								case 'slider-video-type-html5':
 									$imageUrl = $this->get_image( $post_id, Slider_Options::$options['image_size'], $placeholder_args, true );
 									$html .= '<div class="sp-slide">';
-										//$html .= '<div class="sp-layer">';
-											$html .= '<video class="sp-video" data-fill-mode="fill" poster="' . $imageUrl . '" controls="controls" preload="none">';
-												$html .= '<source src="' . wp_get_attachment_url( $video_mp4_id ) . '" type="video/mp4"/>';
-												$html .= '<source src="' . wp_get_attachment_url( $video_ogv_id ) . '" type="video/ogg"/>';
-											$html .= '</video>';
-										//$html .= '</div>';
+										$html .= '<video class="sp-video" data-fill-mode="fill" poster="' . $imageUrl . '" controls="controls" preload="none">';
+											$html .= '<source src="' . wp_get_attachment_url( $video_mp4_id ) . '" type="video/mp4"/>';
+											$html .= '<source src="' . wp_get_attachment_url( $video_ogv_id ) . '" type="video/ogg"/>';
+										$html .= '</video>';
 									$html .= '</div>';
 									break;
 							}
@@ -329,6 +333,7 @@ class Cherry_Slider_Data {
 	 * @return string(HTML-formatted).
 	 */
 	public function get_image( $id, $size, $placeholder_attr, $only_url = false ) {
+
 		// place holder defaults attr
 		$default_placeholder_attr = apply_filters( 'cherry_slider_placeholder_default_args',
 			array(
@@ -344,19 +349,22 @@ class Cherry_Slider_Data {
 		$placeholder_attr = wp_parse_args( $placeholder_attr, $default_placeholder_attr );
 
 		$image = '';
-		//check the attached image, if not attached - function replaces on the placeholder
+
+		// Check the attached image, if not attached - function replaces on the placeholder
 
 		if ( has_post_thumbnail( $id ) ) {
 			$thumbnail_id = get_post_thumbnail_id( intval( $id ) );
 			$attachment_image = wp_get_attachment_image_src( $thumbnail_id, $size );
-			if( $only_url ){
+
+			if ( $only_url ){
 				return $attachment_image[0];
 			}
+
 			$image_html_attrs = 'class="sp-image"';
 			$image_html_attrs .= 'src="' . CHERRY_SLIDER_URI . 'public/assets/css/images/blank.gif"';
 			$image_html_attrs .= 'data-src="' . $attachment_image[0] . '"';
 			$image = sprintf( '<img %s alt="">', $image_html_attrs );
-		}else{
+		} else {
 			$placeholder_link = 'http://fakeimg.pl/' . $placeholder_attr['width'] . 'x' . $placeholder_attr['height'] . '/'. $placeholder_attr['background'] .'/'. $placeholder_attr['foreground'] . '/?text=' . $placeholder_attr['title'] . '';
 			$image = '<img class="sp-image ' . $placeholder_attr['class'] . '" src="' . $placeholder_link . '" alt="" title="' . $placeholder_attr['title'] . '">';
 		}
@@ -370,41 +378,54 @@ class Cherry_Slider_Data {
 	 * @param  string|int|int|string|string $args image url, cropped width value, cropped height value, custom class name, image alt name.
 	 * @return string(HTML-formatted).
 	 */
-	public function get_crop_image( $img_url = '', $width = 100, $height = 100, $custom_class = "", $alt_value="" ) {
+	public function get_crop_image( $img_url = '', $width = 100, $height = 100, $custom_class = '', $alt_value = '' ) {
 		$attachment_id = $this->get_attachment_id_from_src( $img_url );
 
-		// check if $attachment_id exist
-		if($attachment_id == null){
+		// Check if $attachment_id exist.
+		if ( null == $attachment_id ) {
 			return false;
 		}
 
 		$image = '';
-		//resize & crop img
+
+		// Resize & crop image.
 		$croped_image_url = aq_resize( $img_url, $width, $height, true );
-		// get $pathinfo
+
+		// Get $pathinfo.
 		$pathinfo = pathinfo( $croped_image_url );
-		//get $attachment metadata
+
+		// Get $attachment metadata.
 		$attachment_metadata = wp_get_attachment_metadata( $attachment_id );
-		// create new custom size
+
+		// Create new custom size.
 		$attachment_metadata['sizes']['croped-image-' . $width . '-' . $height] = array(
 			'file'			=> $pathinfo['basename'],
 			'width'			=> $width,
 			'height'		=> $height,
-			'mime-type'		=> get_post_mime_type($attachment_id)
+			'mime-type'		=> get_post_mime_type($attachment_id),
 		);
-		// wp update attachment metadata
-		if( wp_update_attachment_metadata( $attachment_id, $attachment_metadata ) ){
 
-		}
+		// WP update attachment metadata.
+		wp_update_attachment_metadata( $attachment_id, $attachment_metadata );
+
 		$ratio_value = $height / $width;
 		$image .= '<img class="image croped-image ' . $custom_class . '" data-ratio="' . $ratio_value . '" width="' . $width . '" height="' . $height .'" src="' . $croped_image_url . '" alt="'. $alt_value .'">';
+
 		return $image;
 	}
 
+	/**
+	 * Get attachment id using image src.
+	 *
+	 * @param  string $image_src
+	 * @return int $id image uri source.
+	 */
 	public function get_attachment_id_from_src ( $image_src ) {
 		global $wpdb;
+
 		$query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$image_src'";
-		$id = $wpdb->get_var($query);
+		$id = $wpdb->get_var( $query );
+
 		return $id;
 	}
 
