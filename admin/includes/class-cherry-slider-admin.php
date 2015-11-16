@@ -9,6 +9,11 @@
  * @copyright 2014 Cherry Team
  */
 
+/**
+ * Class for Cherry Simple Slider admin functionality.
+ *
+ * @since 1.0.0
+ */
 class Cherry_Slider_Admin {
 
 	/**
@@ -37,7 +42,7 @@ class Cherry_Slider_Admin {
 		add_action( 'load-edit.php', array( $this, 'load_edit' ) );
 
 		// Modify the columns on the "Slides" screen.
-		add_filter( 'manage_edit-cherry_slider_columns',        array( $this, 'edit_cherry_slider_columns'   ) );
+		add_filter( 'manage_edit-cherry_slider_columns', array( $this, 'edit_cherry_slider_columns' ) );
 
 		add_action( 'manage_cherry_slider_posts_custom_column', array( $this, 'manage_cherry_slider_columns' ), 10, 2 );
 
@@ -48,13 +53,15 @@ class Cherry_Slider_Admin {
 	}
 
 	/**
+	 * Load post meta boxes.
 	 *
 	 * @since 1.0.0
+	 * @return void
 	 */
 	public function load_post_meta_boxes() {
 		$screen = get_current_screen();
 
-		if ( ( !empty( $screen->post_type ) && CHERRY_SLIDER_NAME === $screen->post_type ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
+		if ( ( ! empty( $screen->post_type ) && CHERRY_SLIDER_NAME === $screen->post_type ) || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
 			require_once( trailingslashit( CHERRY_SLIDER_DIR ) . 'admin/includes/class-cherry-slider-meta-boxes.php' );
 			$this->slider_meta_boxes = new Cherry_Simple_Slider_Meta_Boxes;
 		}
@@ -81,21 +88,19 @@ class Cherry_Slider_Admin {
 	 * @since 1.0.0
 	 * @return void
 	 */
-	public function print_styles() { ?>
-		<style type="text/css">
+	public function print_styles() {
+		?><style type="text/css">
 		.edit-php .wp-list-table td.thumbnail.column-thumbnail,
-		.edit-php .wp-list-table th.manage-column.column-thumbnail {
-			text-align: center;
-		}
-		</style>
-	<?php }
+		.edit-php .wp-list-table th.manage-column.column-thumbnail { text-align: center; }
+		</style><?php
+	}
 
 	/**
 	 * Filters the columns on the "Slider list" screen.
 	 *
 	 * @since  1.0.0
-	 * @param  array $post_columns
-	 * @return array
+	 * @param  array $post_columns default columns array.
+	 * @return array $post_columns updated columns array.
 	 */
 	public function edit_cherry_slider_columns( $post_columns ) {
 
@@ -118,16 +123,17 @@ class Cherry_Slider_Admin {
 	 * Add output for custom columns on the "menu items" screen.
 	 *
 	 * @since  1.0.0
-	 * @param  string $column
-	 * @param  int    $post_id
+	 * @param  string $column column oblect
+	 * @param  int $post_id post id
+	 * @return void
 	 */
 	public function manage_cherry_slider_columns( $column, $post_id ) {
 
-		switch( $column ) {
+		switch ( $column ) {
 
 			case CHERRY_SLIDER_NAME . '_sliders' :
 
-				$post_categories = is_wp_error( get_the_terms($post_id, CHERRY_SLIDER_NAME.'_sliders') ) ?'': get_the_terms($post_id, CHERRY_SLIDER_NAME.'_sliders');
+				$post_categories = is_wp_error( get_the_terms( $post_id, CHERRY_SLIDER_NAME . '_sliders' ) ) ? '' : get_the_terms( $post_id, CHERRY_SLIDER_NAME . '_sliders' ) ;
 
 				if ( $post_categories ) {
 					$category_name_list = '';

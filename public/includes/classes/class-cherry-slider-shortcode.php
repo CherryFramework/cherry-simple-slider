@@ -70,7 +70,7 @@ class Cherry_Slider_Shortcode extends Cherry_Slider_Data {
 	 * Filter to modify original shortcodes data and add [$this->name] shortcode.
 	 *
 	 * @since  1.0.0
-	 * @param  array   $shortcodes Original plugin shortcodes.
+	 * @param  array $shortcodes Original plugin shortcodes.
 	 * @return array               Modified array.
 	 */
 	public function shortcodes( $shortcodes ) {
@@ -107,8 +107,8 @@ class Cherry_Slider_Shortcode extends Cherry_Slider_Data {
 				'slider_orientation' => array(
 					'type'    => 'select',
 					'values'  => array(
-						'horizontal'	=> __('Horizontal', 'cherry-slider'),
-						'vertical'		=> __('Vertical', 'cherry-slider'),
+						'horizontal'	=> __( 'Horizontal', 'cherry-slider' ),
+						'vertical'		=> __( 'Vertical', 'cherry-slider' ),
 					),
 					'default' => 'horizontal',
 					'name'    => __( 'Slider orientation', 'cherry-slider' ),
@@ -154,7 +154,7 @@ class Cherry_Slider_Shortcode extends Cherry_Slider_Data {
 				),
 			),
 			'icon'     => 'fa fa-eye', // Custom icon (font-awesome).
-			'function' => array( $this, 'do_shortcode' ) // Name of shortcode function.
+			'function' => array( $this, 'do_shortcode' ), // Name of shortcode function.
 		);
 
 		return $shortcodes;
@@ -163,7 +163,7 @@ class Cherry_Slider_Shortcode extends Cherry_Slider_Data {
 	/**
 	 * Add target dir
 	 *
-	 * @param array $target_dirs
+	 * @param array $target_dirs Target dirs.
 	 * @return array $target_dirs updated array.
 	 */
 	public function add_target_dir( $target_dirs ) {
@@ -205,10 +205,10 @@ class Cherry_Slider_Shortcode extends Cherry_Slider_Data {
 		 */
 		$atts = shortcode_atts( $defaults, $atts, $shortcode );
 
-		$atts['slider_navigation']	= ( bool ) ( $atts['slider_navigation'] === 'yes' ) ? 'true' : 'false' ;
-		$atts['slider_pagination']	= ( bool ) ( $atts['slider_pagination'] === 'yes' ) ? 'true' : 'false' ;
-		$atts['slider_autoplay']	= ( bool ) ( $atts['slider_autoplay'] === 'yes' ) ? 'true' : 'false' ;
-		$atts['slider_fullScreen']	= ( bool ) ( $atts['slider_fullScreen'] === 'yes' ) ? 'true' : 'false' ;
+		$atts['slider_navigation']	= ( bool ) ( 'yes' === $atts['slider_navigation'] ) ? 'true' : 'false' ;
+		$atts['slider_pagination']	= ( bool ) ( 'yes' === $atts['slider_pagination'] ) ? 'true' : 'false' ;
+		$atts['slider_autoplay']	= ( bool ) ( 'yes' === $atts['slider_autoplay'] ) ? 'true' : 'false' ;
+		$atts['slider_fullScreen']	= ( bool ) ( 'yes' === $atts['slider_fullScreen'] ) ? 'true' : 'false' ;
 
 		return $this->the_slider( $atts );
 	}
@@ -222,7 +222,7 @@ class Cherry_Slider_Shortcode extends Cherry_Slider_Data {
 	public static function get_instance() {
 
 		// If the single instance hasn't been set, set it now.
-		if ( null == self::$instance ){
+		if ( null == self::$instance ) {
 			self::$instance = new self;
 		}
 

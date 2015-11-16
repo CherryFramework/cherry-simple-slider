@@ -9,6 +9,11 @@
  * @copyright 2014 Cherry Team
  */
 
+/**
+ * Class for Simple Slider custom post meta boxes.
+ *
+ * @since 1.0.0
+ */
 class Cherry_Simple_Slider_Meta_Boxes {
 
 	/**
@@ -78,8 +83,8 @@ class Cherry_Simple_Slider_Meta_Boxes {
 	 * Prints the box content.
 	 *
 	 * @since 1.0.0
-	 * @param object $post    Current post object.
-	 * @param array  $metabox
+	 * @param object $post Current post object.
+	 * @param array $metabox Current metabox object.
 	 */
 	public function callback_metabox( $post, $metabox ) {
 		$output = '';
@@ -117,13 +122,13 @@ class Cherry_Simple_Slider_Meta_Boxes {
 	 * Post Format settings.
 	 *
 	 * @since 1.0.0
-	 * @param object $post    Current post object.
-	 * @param string  $format
+	 *
+	 * @param string $format post format
 	 */
 	public function format_settings( $format = 'standart' ) {
 		$post_format_settings = array();
 
-		switch ($format) {
+		switch ( $format ) {
 			case 'standart':
 				/**
 				 * Filter base settings for standart format options.
@@ -238,7 +243,7 @@ class Cherry_Simple_Slider_Meta_Boxes {
 						'value'			=> 'true',
 						'toggle'		=> array(
 							'true_toggle'	=> __( 'Yes', 'cherry-slider' ),
-							'false_toggle'	=> __( 'No', 'cherry-slider' )
+							'false_toggle'	=> __( 'No', 'cherry-slider' ),
 						),
 					),
 				));
@@ -344,11 +349,11 @@ class Cherry_Simple_Slider_Meta_Boxes {
 	}
 
 	/**
-	 * Post format metabox form renderer
+	 * Post format metabox form renderer.
 	 *
 	 * @param  int $post_id post id number.
 	 * @param  string $format  selected post format.
-	 * @return void DOM part render.
+	 * @return void
 	 */
 	public function format_metabox_builder( $post_id = null, $format = 'standart' ) {
 		$output = '';
@@ -384,8 +389,8 @@ class Cherry_Simple_Slider_Meta_Boxes {
 	 * Save the meta when the post is saved.
 	 *
 	 * @since 1.0.0
-	 * @param int    $post_id
-	 * @param object $post
+	 * @param int    $post_id post id
+	 * @param object $post post object
 	 */
 	public function save_post( $post_id, $post ) {
 
@@ -408,7 +413,7 @@ class Cherry_Simple_Slider_Meta_Boxes {
 		}
 
 		// Don't save if the post is only a revision.
-		if ( 'revision' == $post->post_type ){
+		if ( 'revision' == $post->post_type ) {
 			return;
 		}
 
@@ -436,16 +441,14 @@ class Cherry_Simple_Slider_Meta_Boxes {
 		// If a new meta value was added and there was no previous value, add it.
 		if ( $new_meta_value && '' == $meta_value ) {
 			add_post_meta( $post_id, CHERRY_SLIDER_POSTMETA, $new_meta_value, true );
-		}
+		} elseif ( $new_meta_value && $new_meta_value != $meta_value ) {
 
-		// If the new meta value does not match the old value, update it.
-		elseif ( $new_meta_value && $new_meta_value != $meta_value ) {
+			// If the new meta value does not match the old value, update it.
 			$new_meta_value = array_merge( $meta_value, $new_meta_value );
 			update_post_meta( $post_id, CHERRY_SLIDER_POSTMETA, $new_meta_value );
-		}
+		} elseif ( '' == $new_meta_value && $meta_value ) {
 
-		// If there is no new meta value but an old value exists, delete it.
-		elseif ( '' == $new_meta_value && $meta_value ) {
+			// If there is no new meta value but an old value exists, delete it.
 			delete_post_meta( $post_id, CHERRY_SLIDER_POSTMETA, $meta_value );
 		}
 	}

@@ -19,7 +19,12 @@ if ( ! class_exists( 'cherry_register_static' ) ) {
 	return;
 }
 
-class cherry_slider_static extends cherry_register_static {
+/**
+ * Register new Simple Slider static.
+ *
+ * @since 4.0.0
+ */
+class Cherry_Slider_Static extends cherry_register_static {
 
 	/**
 	 * Callback-method for registered static.
@@ -27,7 +32,7 @@ class cherry_slider_static extends cherry_register_static {
 	 * @since 4.0.0
 	 */
 	public function callback() {
-		if( class_exists('Cherry_Slider_Data') ) {
+		if ( class_exists( 'Cherry_Slider_Data' ) ) {
 			$slider = new Cherry_Slider_Data;
 
 			echo $slider->the_slider();
@@ -38,7 +43,7 @@ class cherry_slider_static extends cherry_register_static {
 /**
  * Registration for Search Form static.
  */
-new cherry_slider_static(
+new Cherry_Slider_Static(
 	array(
 		'id'      => 'simple-slider',
 		'name'    => __( 'Simple Slider', 'cherry' ),

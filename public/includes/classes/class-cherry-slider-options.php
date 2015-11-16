@@ -186,7 +186,7 @@ if ( ! class_exists( 'Slider_Options' ) ) {
 				'type'			=> 'text',
 				'title'			=> __( 'Slider 992px breakpoint height', 'cherry-slider' ),
 				'decsription'	=> __( 'Sets specific breakpoints which allow changing the look and behavior of the slider when the page resizes.', 'cherry-slider' ),
-				'hint'			=>  array(
+				'hint'			=> array(
 					'type'		=> 'text',
 					'content'	=> __( "The 'breakpoints' property is assigned an object which contains certain browser window widths and the slider properties that are applied to those specific widths. This is very similar to CSS media queries.", 'cherry-slider' ),
 				),
@@ -196,7 +196,7 @@ if ( ! class_exists( 'Slider_Options' ) ) {
 				'type'			=> 'text',
 				'title'			=> __( 'Slider 768px breakpoint height', 'cherry-slider' ),
 				'decsription'	=> __( 'Sets specific breakpoints which allow changing the look and behavior of the slider when the page resizes.', 'cherry-slider' ),
-				'hint'			=>  array(
+				'hint'			=> array(
 					'type'		=> 'text',
 					'content'	=> __( "The 'breakpoints' property is assigned an object which contains certain browser window widths and the slider properties that are applied to those specific widths. This is very similar to CSS media queries.", 'cherry-slider' ),
 				),
@@ -212,7 +212,7 @@ if ( ! class_exists( 'Slider_Options' ) ) {
 				'type'			=> 'select',
 				'title'			=> __( 'Slider forceSize', 'cherry-slider' ),
 				'decsription'	=> __( 'Indicates if the size of the slider will be forced to full width or full window.', 'cherry-slider' ),
-				'hint'			=>  array(
+				'hint'			=> array(
 					'type'		=> 'text',
 					'content'	=> __( "Note: It's possible to make the slider full width or full window by giving it width and/or height of '100%'. However, sometimes the slider might be inside other containers which are less than full width/window. The 'forceSize' property is useful in those situations because it will still enlarge the slider to fill the width or window by overflowing its parent elements.", 'cherry-slider' ),
 				),
@@ -357,7 +357,7 @@ if ( ! class_exists( 'Slider_Options' ) ) {
 				'toggle'		=> array(
 					'true_toggle'	=> __( 'Yes', 'cherry' ),
 					'false_toggle'	=> __( 'No', 'cherry' ),
-				)
+				),
 			);
 			$slider_options['cherry-slider-thumbnails-position'] = array(
 				'type'			=> 'select',
@@ -412,17 +412,17 @@ if ( ! class_exists( 'Slider_Options' ) ) {
 		}
 
 		/**
-		 * Get option by name from theme options
+		 * Get option by name from theme options.
 		 *
 		 * @since  1.0.0
 		 *
 		 * @uses   cherry_get_option  use cherry_get_option from Cherry framework if exist
 		 *
-		 * @param  string  $name    option name to get
-		 * @param  mixed   $default default option value
-		 * @return mixed            option value
+		 * @param  string $name    Option name to get.
+		 * @param  mixed $default  Default option value.
+		 * @return mixed           Option value.
 		 */
-		public static function cherry_slider_get_option( $name , $default = false ) {
+		public static function cherry_slider_get_option( $name, $default = false ) {
 
 			if ( function_exists( 'cherry_get_option' ) ) {
 				$result = cherry_get_option( $name , $default );
@@ -448,7 +448,6 @@ if ( ! class_exists( 'Slider_Options' ) ) {
 
 			return self::$instance;
 		}
-
 	}
 
 	Slider_Options::get_instance();

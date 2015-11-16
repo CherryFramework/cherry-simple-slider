@@ -76,7 +76,7 @@ class Cherry_Slider_Registration {
 			'supports'        => $supports,
 			'public'          => true,
 			'capability_type' => 'post',
-			'rewrite'         => array( 'slug' => 'slider-archive', ),
+			'rewrite'         => array( 'slug' => 'slider-archive' ),
 			'menu_position'   => null,
 			'menu_icon'       => ( version_compare( $GLOBALS['wp_version'], '3.8', '>=' ) ) ? 'dashicons-welcome-view-site' : '',
 			'can_export'      => true,
@@ -101,7 +101,7 @@ class Cherry_Slider_Registration {
 			return;
 		}
 
-		$args = apply_filters( 'cherry_slider_add_post_formats_support', array( 'image', 'video', ) );
+		$args = apply_filters( 'cherry_slider_add_post_formats_support', array( 'image', 'video' ) );
 
 		add_post_type_support( CHERRY_SLIDER_NAME, 'post-formats', $args );
 		add_theme_support( 'post-formats', $args );
@@ -115,7 +115,7 @@ class Cherry_Slider_Registration {
 	 */
 	public function register_taxonomy() {
 
-		//Register the category taxonomy
+		// Register the category taxonomy
 		$category_taxonomy_labels = array(
 			'label'				=> __( 'Sliders', 'cherry-slider' ),
 			'singular_name'		=> __( 'Slider', 'cherry-slider' ),
@@ -151,7 +151,7 @@ class Cherry_Slider_Registration {
 	public static function get_instance() {
 
 		// If the single instance hasn't been set, set it now.
-		if ( null == self::$instance ){
+		if ( null == self::$instance ) {
 			self::$instance = new self;
 		}
 

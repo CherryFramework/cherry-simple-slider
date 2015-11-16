@@ -50,7 +50,8 @@ class Cherry_Slider_Data {
 	 * Display or return HTML-formatted slider items.
 	 *
 	 * @since  1.0.0
-	 * @param  string|array $args Arguments.
+	 * @param  string|array $options     Default options.
+	 * @param  string|array $query_args  Query arguments.
 	 * @return string
 	 */
 	public function the_slider( $options = '', $query_args = '' ) {
@@ -102,7 +103,7 @@ class Cherry_Slider_Data {
 					$html .= '<div class="sp-slides">';
 						$html .= $this->get_slider_loop( $posts_query );
 					$html .= '</div>';
-					if( 'true' == $options['slider_thumbnails'] ){
+					if ( 'true' == $options['slider_thumbnails'] ) {
 						$html .= '<div class="sp-thumbnails">';
 							$html .= $this->get_slider_thumbnails( $posts_query );
 						$html .= '</div>';
@@ -120,13 +121,13 @@ class Cherry_Slider_Data {
 	 * Get slider items.
 	 *
 	 * @since  1.0.0
-	 * @param  array|string $args Arguments to be passed to the query.
+	 * @param  array|string $query_args Arguments to be passed to the query.
 	 * @return array|bool         Array if true, boolean if false.
 	 */
 	public function get_query_slider_items( $query_args = '' ) {
-		$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
+		$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1 ;
 
-		$slider_name = $query_args['cherry_slider_sliders' ];
+		$slider_name = $query_args['cherry_slider_sliders'];
 
 		$tax_query_args = '';
 		if ( ! empty( $slider_name ) ) {
@@ -165,6 +166,12 @@ class Cherry_Slider_Data {
 		}
 	}
 
+	/**
+	 * Get thumbnails images list.
+	 *
+	 * @param  object $posts_query   Result post query.
+	 * @return void
+	 */
 	public function get_slider_thumbnails( $posts_query ) {
 		$html = '';
 
@@ -176,7 +183,7 @@ class Cherry_Slider_Data {
 
 					$placeholder_args = apply_filters( 'cherry_slider_placeholder_args',
 						array(
-							'width'			=> Slider_Options::$options['slider_thumbnails_width' ],
+							'width'			=> Slider_Options::$options['slider_thumbnails_width'],
 							'height'		=> Slider_Options::$options['slider_thumbnails_height'],
 							'background'	=> 'f62e46',
 							'foreground'	=> 'fff',
@@ -187,7 +194,7 @@ class Cherry_Slider_Data {
 
 					// Get img URL
 					$img_url = wp_get_attachment_url( $thumb_id ,'full' );
-					$image = $this->get_crop_image( $img_url, Slider_Options::$options['slider_thumbnails_width' ], Slider_Options::$options['slider_thumbnails_height' ], 'sp-thumbnail-image' );
+					$image = $this->get_crop_image( $img_url, Slider_Options::$options['slider_thumbnails_width'], Slider_Options::$options['slider_thumbnails_height'], 'sp-thumbnail-image' );
 
 					$html .= '<div class="sp-thumbnail">';
 						$html .= '<div class="sp-thumbnail-image-container">';
@@ -205,11 +212,12 @@ class Cherry_Slider_Data {
 
 		return $html;
 	}
+
 	/**
 	 * Get slider items.
 	 *
 	 * @since  1.0.0
-	 * @param  array         $posts_query      List of WP_Post objects.
+	 * @param  array $posts_query      List of WP_Post objects.
 	 * @return string
 	 */
 	public function get_slider_loop( $posts_query ) {
@@ -247,7 +255,7 @@ class Cherry_Slider_Data {
 
 					$placeholder_args = apply_filters( 'cherry_slider_placeholder_args',
 						array(
-							'width'			=> Slider_Options::$options['image_crop_width' ],
+							'width'			=> Slider_Options::$options['image_crop_width'],
 							'height'		=> Slider_Options::$options['image_crop_height'],
 							'background'	=> 'f62e46',
 							'foreground'	=> 'fff',
@@ -256,12 +264,12 @@ class Cherry_Slider_Data {
 						)
 					);
 
-					if(	"true" === Slider_Options::$options['is_image_crop'] ){
+					if ( "true" === Slider_Options::$options['is_image_crop'] ) {
 
 						// Get img URL
 						$img_url = wp_get_attachment_url( $thumb_id ,'full');
-						$image = $this->get_crop_image( $img_url, Slider_Options::$options['image_crop_width' ], Slider_Options::$options['image_crop_height' ] );
-					}else{
+						$image = $this->get_crop_image( $img_url, Slider_Options::$options['image_crop_width'], Slider_Options::$options['image_crop_height'] );
+					} else {
 						$image = $this->get_image( $post_id, Slider_Options::$options['image_size'], $placeholder_args );
 					}
 
@@ -296,7 +304,7 @@ class Cherry_Slider_Data {
 						default:
 							$html .= '<div class="sp-slide">';
 								$html .= $image;
-								( $content_wrapper == 'true' ) ? $content_wrap_class = ' sp-black sp-padding' : $content_wrap_class = '' ;
+								( 'true' == $content_wrapper ) ? $content_wrap_class = ' sp-black sp-padding' : $content_wrap_class = '' ;
 								$title_content_attr = 'class="sp-layer' . $content_wrap_class . '"';
 								$title_content_attr .= 'data-width="' . $content_width . '"';
 								$title_content_attr .= 'data-position="' . $content_position . '"';
@@ -308,7 +316,7 @@ class Cherry_Slider_Data {
 								$title_content_attr .= 'data-hide-duration="' . $content_hide_duration . '"';
 								$title_content_attr .= 'data-hide-delay="' . $content_hide_delay .'"';
 
-								$html .= sprintf('<div %1$s>%2$s</div>', $title_content_attr, do_shortcode( get_the_content() ) );
+								$html .= sprintf( '<div %1$s>%2$s</div>', $title_content_attr, do_shortcode( get_the_content() ) );
 							$html .= '</div>';
 							break;
 					}
@@ -327,10 +335,11 @@ class Cherry_Slider_Data {
 	/**
 	 * Get post attached image.
 	 *
-	 * @since  1.0.0
-	 * @param  int $id post id.
-	 * @param  array, string
-	 * @return string(HTML-formatted).
+	 * @param  int  $id                  image id
+	 * @param  string|array  $size       image size
+	 * @param  array  $placeholder_attr  placeholder settings
+	 * @param  boolean $only_url         only url status
+	 * @return string                    renered img tag
 	 */
 	public function get_image( $id, $size, $placeholder_attr, $only_url = false ) {
 
@@ -350,13 +359,12 @@ class Cherry_Slider_Data {
 
 		$image = '';
 
-		// Check the attached image, if not attached - function replaces on the placeholder
-
+		// Check the attached image, if not attached - function replaces on the placeholder.
 		if ( has_post_thumbnail( $id ) ) {
 			$thumbnail_id = get_post_thumbnail_id( intval( $id ) );
 			$attachment_image = wp_get_attachment_image_src( $thumbnail_id, $size );
 
-			if ( $only_url ){
+			if ( $only_url ) {
 				return $attachment_image[0];
 			}
 
@@ -368,6 +376,7 @@ class Cherry_Slider_Data {
 			$placeholder_link = 'http://fakeimg.pl/' . $placeholder_attr['width'] . 'x' . $placeholder_attr['height'] . '/'. $placeholder_attr['background'] .'/'. $placeholder_attr['foreground'] . '/?text=' . $placeholder_attr['title'] . '';
 			$image = '<img class="sp-image ' . $placeholder_attr['class'] . '" src="' . $placeholder_link . '" alt="" title="' . $placeholder_attr['title'] . '">';
 		}
+
 		return $image;
 	}
 
@@ -375,8 +384,13 @@ class Cherry_Slider_Data {
 	 * Get cropped image.
 	 *
 	 * @since  1.0.0
-	 * @param  string|int|int|string|string $args image url, cropped width value, cropped height value, custom class name, image alt name.
-	 * @return string(HTML-formatted).
+	 *
+	 * @param  string  $img_url      full image url
+	 * @param  integer $width        new image width
+	 * @param  integer $height       new image height
+	 * @param  string  $custom_class custom image class
+	 * @param  string  $alt_value    alt label text
+	 * @return string                croped umage url
 	 */
 	public function get_crop_image( $img_url = '', $width = 100, $height = 100, $custom_class = '', $alt_value = '' ) {
 		$attachment_id = $this->get_attachment_id_from_src( $img_url );
@@ -398,11 +412,11 @@ class Cherry_Slider_Data {
 		$attachment_metadata = wp_get_attachment_metadata( $attachment_id );
 
 		// Create new custom size.
-		$attachment_metadata['sizes']['croped-image-' . $width . '-' . $height] = array(
+		$attachment_metadata['sizes']['croped-image-' . $width . '-' . $height ] = array(
 			'file'			=> $pathinfo['basename'],
 			'width'			=> $width,
 			'height'		=> $height,
-			'mime-type'		=> get_post_mime_type($attachment_id),
+			'mime-type'		=> get_post_mime_type( $attachment_id ),
 		);
 
 		// WP update attachment metadata.
@@ -417,10 +431,10 @@ class Cherry_Slider_Data {
 	/**
 	 * Get attachment id using image src.
 	 *
-	 * @param  string $image_src
+	 * @param  string $image_src image source url.
 	 * @return int $id image uri source.
 	 */
-	public function get_attachment_id_from_src ( $image_src ) {
+	public function get_attachment_id_from_src( $image_src ) {
 		global $wpdb;
 
 		$query = "SELECT ID FROM {$wpdb->posts} WHERE guid='$image_src'";
@@ -428,5 +442,4 @@ class Cherry_Slider_Data {
 
 		return $id;
 	}
-
 }
