@@ -17,6 +17,11 @@ if ( ! defined( 'WPINC' ) ) {
 // If class 'Slider_Options' not exists.
 if ( ! class_exists( 'Slider_Options' ) ) {
 
+	/**
+	 * Sets up and initializes Slider Options class.
+	 *
+	 * @since 1.0.0
+	 */
 	class Slider_Options {
 
 		/**
@@ -50,7 +55,7 @@ if ( ! class_exists( 'Slider_Options' ) ) {
 			add_action( 'init', array( $this, 'set_slider_options' ) );
 
 			// Cherry option filter.
-			add_filter('cherry_defaults_settings', array( $this, 'cherry_slider_settings' ) );
+			add_filter( 'cherry_defaults_settings', array( $this, 'cherry_slider_settings' ) );
 		}
 
 		/**
@@ -87,13 +92,11 @@ if ( ! class_exists( 'Slider_Options' ) ) {
 			self::set_option_value( 'slider_thumbnails_height', self::cherry_slider_get_option( 'cherry-slider-thumbnails-height', 150 ) );
 			self::set_option_value( 'slider_reach_video_action', self::cherry_slider_get_option( 'cherry-slider-reach-video-action', 'none' ) );
 			self::set_option_value( 'image_class', '' );
-
-			//defaults query_args
 			self::set_option_value( 'post_type', CHERRY_SLIDER_NAME );
 			self::set_option_value( CHERRY_SLIDER_NAME.'_sliders', self::cherry_slider_get_option( 'cherry-slider-name', '' ) );
 			self::set_option_value( 'orderby', 'date' );
-			self::set_option_value( 'order', self::cherry_slider_get_option('cherry-slider-order', 'DESC' ) );
-			self::set_option_value( 'posts_per_page', self::cherry_slider_get_option('cherry-slider-number-slides', 5 ) );
+			self::set_option_value( 'order', self::cherry_slider_get_option( 'cherry-slider-order', 'DESC' ) );
+			self::set_option_value( 'posts_per_page', self::cherry_slider_get_option( 'cherry-slider-number-slides', 5 ) );
 			self::set_option_value( 'offset', 0 );
 			self::set_option_value( 'suppress_filters', false );
 		}
@@ -103,7 +106,7 @@ if ( ! class_exists( 'Slider_Options' ) ) {
 		 *
 		 * @since  1.0.0
 		 * @param string $name option name.
-		 * @param mixed $value option value.
+		 * @param mixed  $value option value.
 		 * @return void
 		 */
 		static function set_option_value( $name, $value = null ) {
@@ -131,8 +134,8 @@ if ( ! class_exists( 'Slider_Options' ) ) {
 		/**
 		 * Update dafault cherry-options array.
 		 *
-		 * @param  array $result_array currunt dafault cherry-options array
-		 * @return array $result_array updated dafault cherry-options array
+		 * @param  array $result_array currunt dafault cherry-options array.
+		 * @return array $result_array updated dafault cherry-options array.
 		 */
 		function cherry_slider_settings( $result_array ) {
 			$slider_options = array();
@@ -166,7 +169,7 @@ if ( ! class_exists( 'Slider_Options' ) ) {
 				'type'			=> 'text',
 				'title'			=> __( 'Slider width', 'cherry-slider' ),
 				'decsription'	=> __( 'Sets the width of the slide.', 'cherry-slider' ),
-				'hint'			=>  array(
+				'hint'			=> array(
 					'type'		=> 'text',
 					'content'	=> __( "Can be set to a fixed value, like 900 (indicating 900 pixels), or to a percentage value, like '100%'. It's important to note that percentage values need to be specified inside quotes. For fixed values, the quotes are not necessary. Also, please note that, in order to make the slider responsive, it's not necessary to use percentage values.", 'cherry-slider' ),
 				),
@@ -176,10 +179,6 @@ if ( ! class_exists( 'Slider_Options' ) ) {
 				'type'			=> 'text',
 				'title'			=> __( 'Slider height', 'cherry-slider' ),
 				'decsription'	=> __( 'Sets specific breakpoints which allow changing the look and behavior of the slider when the page resizes.', 'cherry-slider' ),
-				'hint'			=>  array(
-					'type'		=> 'text',
-					'content'	=> __(".", 'cherry-slider'),
-				),
 				'value'			=> '600',
 			);
 			$slider_options['cherry-slider-992-breakpoint-height'] = array(
@@ -418,8 +417,8 @@ if ( ! class_exists( 'Slider_Options' ) ) {
 		 *
 		 * @uses   cherry_get_option  use cherry_get_option from Cherry framework if exist
 		 *
-		 * @param  string $name    Option name to get.
-		 * @param  mixed $default  Default option value.
+		 * @param string $name    Option name to get.
+		 * @param mixed $default  Default option value.
 		 * @return mixed           Option value.
 		 */
 		public static function cherry_slider_get_option( $name, $default = false ) {

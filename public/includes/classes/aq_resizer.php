@@ -1,5 +1,6 @@
 <?php
 
+// @codingStandardsIgnoreStart
 /**
  * Title         : Aqua Resizer
  * Description   : Resizes WordPress images on the fly
@@ -203,5 +204,5 @@ if(!function_exists('aq_resize')) {
         return $aq_resize->process( $url, $width, $height, $crop, $single, $upscale );
     }
 }
-
-
+// @codingStandardsIgnoreEnd
+//

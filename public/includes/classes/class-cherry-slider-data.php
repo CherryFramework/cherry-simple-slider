@@ -170,7 +170,7 @@ class Cherry_Slider_Data {
 	 * Get thumbnails images list.
 	 *
 	 * @param  object $posts_query   Result post query.
-	 * @return void
+	 * @return string $html
 	 */
 	public function get_slider_thumbnails( $posts_query ) {
 		$html = '';
@@ -264,10 +264,10 @@ class Cherry_Slider_Data {
 						)
 					);
 
-					if ( "true" === Slider_Options::$options['is_image_crop'] ) {
+					if ( 'true' === Slider_Options::$options['is_image_crop'] ) {
 
 						// Get img URL
-						$img_url = wp_get_attachment_url( $thumb_id ,'full');
+						$img_url = wp_get_attachment_url( $thumb_id ,'full' );
 						$image = $this->get_crop_image( $img_url, Slider_Options::$options['image_crop_width'], Slider_Options::$options['image_crop_height'] );
 					} else {
 						$image = $this->get_image( $post_id, Slider_Options::$options['image_size'], $placeholder_args );
@@ -335,10 +335,10 @@ class Cherry_Slider_Data {
 	/**
 	 * Get post attached image.
 	 *
-	 * @param  int  $id                  image id
-	 * @param  string|array  $size       image size
-	 * @param  array  $placeholder_attr  placeholder settings
-	 * @param  boolean $only_url         only url status
+	 * @param  int  $id                  image id.
+	 * @param  string|array  $size       image size.
+	 * @param  array  $placeholder_attr  placeholder settings.
+	 * @param  boolean $only_url         only url status.
 	 * @return string                    renered img tag
 	 */
 	public function get_image( $id, $size, $placeholder_attr, $only_url = false ) {
@@ -385,11 +385,11 @@ class Cherry_Slider_Data {
 	 *
 	 * @since  1.0.0
 	 *
-	 * @param  string  $img_url      full image url
-	 * @param  integer $width        new image width
-	 * @param  integer $height       new image height
-	 * @param  string  $custom_class custom image class
-	 * @param  string  $alt_value    alt label text
+	 * @param  string  $img_url      full image url.
+	 * @param  integer $width        new image width.
+	 * @param  integer $height       new image height.
+	 * @param  string  $custom_class custom image class.
+	 * @param  string  $alt_value    alt label text.
 	 * @return string                croped umage url
 	 */
 	public function get_crop_image( $img_url = '', $width = 100, $height = 100, $custom_class = '', $alt_value = '' ) {
@@ -412,7 +412,7 @@ class Cherry_Slider_Data {
 		$attachment_metadata = wp_get_attachment_metadata( $attachment_id );
 
 		// Create new custom size.
-		$attachment_metadata['sizes']['croped-image-' . $width . '-' . $height ] = array(
+		$attachment_metadata['sizes'][ 'croped-image-' . $width . '-' . $height ] = array(
 			'file'			=> $pathinfo['basename'],
 			'width'			=> $width,
 			'height'		=> $height,

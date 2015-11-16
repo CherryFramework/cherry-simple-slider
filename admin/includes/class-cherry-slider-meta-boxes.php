@@ -84,7 +84,7 @@ class Cherry_Simple_Slider_Meta_Boxes {
 	 *
 	 * @since 1.0.0
 	 * @param object $post Current post object.
-	 * @param array $metabox Current metabox object.
+	 * @param array  $metabox Current metabox object.
 	 */
 	public function callback_metabox( $post, $metabox ) {
 		$output = '';
@@ -123,7 +123,7 @@ class Cherry_Simple_Slider_Meta_Boxes {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param string $format post format
+	 * @param string $format post format.
 	 */
 	public function format_settings( $format = 'standart' ) {
 		$post_format_settings = array();
@@ -265,7 +265,7 @@ class Cherry_Simple_Slider_Meta_Boxes {
 						'value'			=> 'true',
 						'toggle'		=> array(
 							'true_toggle'	=> __( 'Yes', 'cherry-slider' ),
-							'false_toggle'	=> __( 'No', 'cherry-slider' )
+							'false_toggle'	=> __( 'No', 'cherry-slider' ),
 						),
 					),
 				));
@@ -351,7 +351,7 @@ class Cherry_Simple_Slider_Meta_Boxes {
 	/**
 	 * Post format metabox form renderer.
 	 *
-	 * @param  int $post_id post id number.
+	 * @param  int $post_id    Post id number.
 	 * @param  string $format  selected post format.
 	 * @return void
 	 */
@@ -389,8 +389,8 @@ class Cherry_Simple_Slider_Meta_Boxes {
 	 * Save the meta when the post is saved.
 	 *
 	 * @since 1.0.0
-	 * @param int    $post_id post id
-	 * @param object $post post object
+	 * @param int    $post_id post id.
+	 * @param object $post post object.
 	 */
 	public function save_post( $post_id, $post ) {
 

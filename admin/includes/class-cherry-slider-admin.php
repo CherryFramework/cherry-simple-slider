@@ -123,8 +123,8 @@ class Cherry_Slider_Admin {
 	 * Add output for custom columns on the "menu items" screen.
 	 *
 	 * @since  1.0.0
-	 * @param  string $column column oblect
-	 * @param  int $post_id post id
+	 * @param  string $column  Column oblect
+	 * @param  int    $post_id Post id.
 	 * @return void
 	 */
 	public function manage_cherry_slider_columns( $column, $post_id ) {
@@ -133,7 +133,7 @@ class Cherry_Slider_Admin {
 
 			case CHERRY_SLIDER_NAME . '_sliders' :
 
-				$post_categories = is_wp_error( get_the_terms( $post_id, CHERRY_SLIDER_NAME . '_sliders' ) ) ? '' : get_the_terms( $post_id, CHERRY_SLIDER_NAME . '_sliders' ) ;
+				$post_categories = is_wp_error( get_the_terms( $post_id, CHERRY_SLIDER_NAME . '_sliders' ) ) ? '' : get_the_terms( $post_id, CHERRY_SLIDER_NAME . '_sliders' );
 
 				if ( $post_categories ) {
 					$category_name_list = '';
