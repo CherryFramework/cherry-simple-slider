@@ -123,7 +123,7 @@ class Cherry_Slider_Admin {
 	 * Add output for custom columns on the "menu items" screen.
 	 *
 	 * @since  1.0.0
-	 * @param  string $column  Column oblect
+	 * @param  string $column  Column oblect.
 	 * @param  int    $post_id Post id.
 	 * @return void
 	 */

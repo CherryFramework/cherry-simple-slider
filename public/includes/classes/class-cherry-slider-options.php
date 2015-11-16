@@ -417,8 +417,8 @@ if ( ! class_exists( 'Slider_Options' ) ) {
 		 *
 		 * @uses   cherry_get_option  use cherry_get_option from Cherry framework if exist
 		 *
-		 * @param string $name    Option name to get.
-		 * @param mixed $default  Default option value.
+		 * @param string $name     Option name to get.
+		 * @param mixed  $default  Default option value.
 		 * @return mixed           Option value.
 		 */
 		public static function cherry_slider_get_option( $name, $default = false ) {

@@ -228,7 +228,6 @@ class Cherry_Slider_Shortcode extends Cherry_Slider_Data {
 
 		return self::$instance;
 	}
-
 }
 
 Cherry_Slider_Shortcode::get_instance();

@@ -130,7 +130,7 @@ if ( ! class_exists( 'Cherry_Slider' ) ) {
 		 * @since 1.0.0
 		 */
 		function includes() {
-			require_once( trailingslashit( CHERRY_SLIDER_DIR ) . 'public/includes/classes/aq_resizer.php' );
+			require_once( trailingslashit( CHERRY_SLIDER_DIR ) . 'public/includes/classes/aq-resizer.php' );
 			require_once( trailingslashit( CHERRY_SLIDER_DIR ) . 'public/includes/classes/class-cherry-slider-registration.php' );
 			require_once( trailingslashit( CHERRY_SLIDER_DIR ) . 'public/includes/classes/class-cherry-slider-options.php' );
 			require_once( trailingslashit( CHERRY_SLIDER_DIR ) . 'public/includes/classes/class-cherry-slider-data.php' );

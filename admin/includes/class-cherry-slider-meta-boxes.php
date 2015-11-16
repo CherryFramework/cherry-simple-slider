@@ -351,7 +351,7 @@ class Cherry_Simple_Slider_Meta_Boxes {
 	/**
 	 * Post format metabox form renderer.
 	 *
-	 * @param  int $post_id    Post id number.
+	 * @param  int    $post_id Post id number.
 	 * @param  string $format  selected post format.
 	 * @return void
 	 */

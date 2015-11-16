@@ -335,11 +335,11 @@ class Cherry_Slider_Data {
 	/**
 	 * Get post attached image.
 	 *
-	 * @param  int  $id                  image id.
-	 * @param  string|array  $size       image size.
-	 * @param  array  $placeholder_attr  placeholder settings.
-	 * @param  boolean $only_url         only url status.
-	 * @return string                    renered img tag
+	 * @param  int          $id               Image id.
+	 * @param  string|array $size             Image size.
+	 * @param  array        $placeholder_attr Placeholder settings.
+	 * @param  boolean      $only_url         Only url status.
+	 * @return string                         renered img tag
 	 */
 	public function get_image( $id, $size, $placeholder_attr, $only_url = false ) {
 
