@@ -316,7 +316,7 @@ class Cherry_Slider_Data {
 								$title_content_attr .= 'data-hide-duration="' . $content_hide_duration . '"';
 								$title_content_attr .= 'data-hide-delay="' . $content_hide_delay .'"';
 
-								$html .= sprintf( '<div %1$s>%2$s</div>', $title_content_attr, do_shortcode( get_the_content() ) );
+								$html .= sprintf( '<div %1$s>%2$s</div>', apply_filters( 'cherry_slider_item_content_attr', $title_content_attr ), do_shortcode( get_the_content() ) );
 							$html .= '</div>';
 							break;
 					}
