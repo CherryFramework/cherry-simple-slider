@@ -3,7 +3,7 @@
  * Plugin Name: Cherry Simple Slider
  * Plugin URI:  http://www.cherryframework.com/
  * Description: A Slider plugin for WordPress.
- * Version:     1.0.4
+ * Version:     1.0.5
  * Author:      Cherry Team
  * Author URI:  http://www.cherryframework.com/
  * Text Domain: cherry-simple-slider
@@ -92,7 +92,7 @@ if ( ! class_exists( 'Cherry_Slider' ) ) {
 			 *
 			 * @since 1.0.0
 			 */
-			define( 'CHERRY_SLIDER_VERSION', '1.0.4' );
+			define( 'CHERRY_SLIDER_VERSION', '1.0.5' );
 
 			/**
 			 * Set the slug of the plugin.
